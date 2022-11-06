@@ -1,9 +1,37 @@
 import { Module } from '@nestjs/common';
+import { UserModule } from './user/user.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AuthModule } from './auth/auth.module';
+import { BookmarkModule } from './bookmark/bookmark.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import {TypeOrmModule} from '@nestjs/typeorm';
+import { DeoitModule } from './deoit/deoit.module';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
-  imports: [],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    AuthModule,
+    UserModule,
+    BookmarkModule,
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        type: 'postgres',
+        host: configService.get('DB_HOST'),
+        port: +configService.get<number>('DB_PORT'),
+        username: configService.get('DB_USERNAME'),
+        password: configService.get('DB_PASSWORD'),
+        database: configService.get('DB_NAME'),
+        entities: [],
+        synchronize: true,
+      }),
+      inject: [ConfigService],
+    }),
+    DeoitModule,
+    PrismaModule,
+   ],
   controllers: [AppController],
   providers: [AppService],
 })
