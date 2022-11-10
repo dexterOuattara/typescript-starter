@@ -11,6 +11,10 @@ import {
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DeoitModule } from './deoit/deoit.module';
 import { PrismaModule } from './prisma/prisma.module';
+import { ArticlesModule } from './articles/articles.module';
+
+
+
 
 @Module({
   imports: [
@@ -44,6 +48,7 @@ import { PrismaModule } from './prisma/prisma.module';
     }),
     DeoitModule,
     PrismaModule,
+    ArticlesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

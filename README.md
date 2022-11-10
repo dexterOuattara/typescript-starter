@@ -26,24 +26,29 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Installation
+## Installation steo 1
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+## CREATE ane EDIT .env File
+
+```bash
+
+ you can use postgres by defauft
+
+```
+
+## Running PRISMA step 2
 
 ```bash
 # development
-$ npm run start
+$ npx prisma studio
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
+
+
 
 ## Test
 
