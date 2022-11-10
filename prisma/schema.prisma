@@ -48,4 +48,20 @@ model Bookmark {
   user   User @relation(fields: [userId], references: [id])
 
   @@map("bookmarks")
+
+
+  
 }
+
+model Service {
+  id          Int      @id @default(autoincrement())
+  title       String   @unique
+  description String?
+  published   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+    @@map("services")
+
+
+  }

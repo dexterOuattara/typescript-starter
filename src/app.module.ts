@@ -12,6 +12,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DeoitModule } from './deoit/deoit.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { ArticlesModule } from './articles/articles.module';
+import { ServicesModule } from './services/services.module';
 
 
 
@@ -49,6 +50,7 @@ import { ArticlesModule } from './articles/articles.module';
     DeoitModule,
     PrismaModule,
     ArticlesModule,
+    ServicesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
