@@ -1,5 +1,5 @@
 // src/articles/dto/create-article.dto.ts
-import {IsString, IsOptional} from 'class-validator'
+import {IsString, IsOptional, IsNumber} from 'class-validator'
 
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -16,6 +16,10 @@ export class CreateArticleDto {
   @ApiProperty()
   @IsString()
   body: string;
+
+  @ApiProperty()
+  @IsNumber()
+  userId: number;
 
   @ApiProperty({ required: false, default: false })
   @IsOptional()

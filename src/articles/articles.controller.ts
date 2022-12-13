@@ -7,7 +7,7 @@ import {
   Param,
   Delete,
   NotFoundException,
-  ValidationPipe,
+  // ValidationPipe,
   UseFilters,
   ParseIntPipe,
 } from '@nestjs/common';

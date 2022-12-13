@@ -18,4 +18,10 @@ export class UserController {
     @GetUser() user: User){
     return user;
   }
+
+  @Get('you')
+  getYou(
+    @GetUser() user: User){
+    return 'fdshjdfvhj fdsuhy';
+  }
 }

@@ -2,9 +2,9 @@ import {
   ForbiddenException,
   Injectable,
 } from '@nestjs/common';
-import { User, Bookmark } from '@prisma/client';
+import { User, Bookmark,Article } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { AuthDto } from './dto';
+import { AuthDto, AuthsignDto } from './dto';
 import * as argon from 'argon2';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import { JwtService } from '@nestjs/jwt';
@@ -28,6 +28,8 @@ export class AuthService {
         data: {
           email: dto.email,
           hash,
+          firstName: dto.firstName,
+          lastName: dto.lastName
         },
       });
 
@@ -47,7 +49,7 @@ export class AuthService {
     }
   }
 
-  async signin(dto: AuthDto) {
+  async signin(dto: AuthsignDto) {
     // find the user by email address
     const user =
       await this.prisma.user.findUnique({
