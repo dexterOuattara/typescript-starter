@@ -7,6 +7,7 @@ import { ApiTags } from '@nestjs/swagger';
 @Injectable()
 @ApiTags('referents')
 export class ReferentsService {
+
   constructor(private prisma: PrismaService) {}
 
   create(createReferentDto: CreateReferentDto) {
@@ -16,6 +17,10 @@ export class ReferentsService {
   }
 
   findAll() {
+    return this.prisma.referent.findMany();
+  }
+
+  findDrafts() {
     return this.prisma.referent.findMany();
   }
 

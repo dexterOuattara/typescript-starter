@@ -1,4 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseFilters,ParseIntPipe, NotFoundException } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseFilters,
+  ParseIntPipe,
+  NotFoundException,
+} from '@nestjs/common';
 import { ReferentsService } from './referents.service';
 import { CreateReferentDto } from './dto/create-referent.dto';
 import { UpdateReferentDto } from './dto/update-referent.dto';
@@ -11,13 +22,13 @@ import {
 import { ReferentEntity } from './entities/referent.entity';
 import { PrismaClientExceptionFilter } from 'src/prisma-client-exception.filter';
 
-
 @Controller('referents')
 @ApiTags('referents')
-@UseFilters(PrismaClientExceptionFilter)  
-
+@UseFilters(PrismaClientExceptionFilter)
 export class ReferentsController {
-  constructor(private readonly referentsService: ReferentsService) {}
+  constructor(
+    private readonly referentsService: ReferentsService,
+  ) {}
 
   @Post()
   @ApiCreatedResponse({ type: ReferentEntity })
@@ -29,14 +40,23 @@ export class ReferentsController {
     );
   }
 
+  @Get('drafts')
+  @ApiOkResponse({
+    type: ReferentEntity,
+    isArray: true,
+  })
+  findDrafts() {
+    return this.referentsService.findDrafts();
+  }
+
   @Get()
   @ApiOkResponse({
     type: ReferentEntity,
     isArray: true,
-  })  findAll() {
+  })
+  findAll() {
     return this.referentsService.findAll();
   }
-
 
   @Get(':id')
   @ApiOkResponse({ type: ReferentEntity })
@@ -54,7 +74,6 @@ export class ReferentsController {
     return referent;
   }
 
-
   @Patch(':id')
   @ApiOkResponse({ type: ReferentEntity })
   update(
@@ -66,7 +85,6 @@ export class ReferentsController {
       UpdateReferentDto,
     );
   }
-
 
   @Delete(':id')
   @ApiOkResponse({ type: ReferentEntity })

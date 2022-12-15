@@ -2,7 +2,7 @@ import {
   IsEmail,
   IsNotEmpty,
   IsString,
-  IsDate
+  IsDateString
 } from 'class-validator';
 
 import { ApiProperty } from '@nestjs/swagger';
@@ -23,7 +23,6 @@ export class AuthsignDto {
 
 
 export class AuthDto {
-  [x: string]: string;
   @ApiProperty()
   @IsEmail()
   @IsNotEmpty()
@@ -58,6 +57,11 @@ export class AuthDto {
   @IsString()
   @IsNotEmpty()
   photo: string;
+
+  @ApiProperty()
+  @IsDateString()
+  @IsNotEmpty()
+  birthday: Date;
 }
 
 
@@ -76,7 +80,6 @@ export class UpdatePasswordDto {
 }
 
 export class UserDto {
-  [x: string]: string;
 
   @ApiProperty()
   @IsEmail()
@@ -107,4 +110,9 @@ export class UserDto {
   @IsString()
   @IsNotEmpty()
   photo: string;
+
+  @ApiProperty()
+  @IsDateString()
+  @IsNotEmpty()
+  birthday: Date;
 }

@@ -7,6 +7,7 @@ import { ApiTags } from '@nestjs/swagger';
 @Injectable()
 @ApiTags('services')
 export class ServicesService {
+
   constructor(private prisma: PrismaService) {}
 
 
@@ -17,9 +18,7 @@ export class ServicesService {
   }
 
   findAll() {
-    return this.prisma.service.findMany({
-      where: { published: true },
-    });
+    return this.prisma.service.findMany();
   }
 
   findDrafts() {

@@ -25,8 +25,7 @@ import { PrismaClientExceptionFilter } from 'src/prisma-client-exception.filter'
 
 @Controller('articles')
 @ApiTags('articles')
-@UseFilters(PrismaClientExceptionFilter)  
-
+@UseFilters(PrismaClientExceptionFilter)
 export class ArticlesController {
   constructor(
     private readonly articlesService: ArticlesService,

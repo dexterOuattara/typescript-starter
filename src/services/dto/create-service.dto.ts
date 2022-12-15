@@ -1,5 +1,5 @@
 // src/articles/dto/create-service.dto.ts
-import {IsString, IsOptional} from 'class-validator'
+import {IsString, IsOptional, IsNotEmpty} from 'class-validator'
 
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -13,6 +13,11 @@ export class CreateServiceDto {
     @IsString()
     @IsOptional()
     description?: string;
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    photo: string;
   
     @ApiProperty({ required: false, default: false })
     @IsOptional()

@@ -6,10 +6,9 @@ import {
   Patch,
   Param,
   Delete,
-  NotFoundException,
-  ValidationPipe,
   UseFilters,
   ParseIntPipe,
+  NotFoundException,
 } from '@nestjs/common';
 import { ServicesService } from './services.service';
 import { CreateServiceDto } from './dto/create-service.dto';
@@ -70,7 +69,7 @@ export class ServicesController {
 
     if (!service) {
       throw new NotFoundException(
-        `Could not find article with ${id}.`,
+        `Could not find service with ${id}.`,
       );
     }
     return service;
@@ -80,7 +79,7 @@ export class ServicesController {
   @ApiOkResponse({ type: ServiceEntity })
   update(
     @Param('id', ParseIntPipe) id: number,
-    @Body() updateServiceDto: ServiceEntity,
+    @Body() updateServiceDto: UpdateServiceDto,
   ) {
     return this.servicesService.update(
       +id,
