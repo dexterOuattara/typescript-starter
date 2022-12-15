@@ -24,6 +24,7 @@ import { AuthGuard} from "@nestjs/passport";
 // @UseInterceptors(ClassSerializerInterceptor)
 @Controller('users')
 export class UserController {
+  
   @Get('me')
   getMe(
     @GetUser() user: User){

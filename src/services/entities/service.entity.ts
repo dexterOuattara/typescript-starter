@@ -14,6 +14,9 @@ export class ServiceEntity implements Service {
   description: string | null;
 
   @ApiProperty()
+  photo: string;
+
+  @ApiProperty()
   published: boolean;
 
   @ApiProperty()

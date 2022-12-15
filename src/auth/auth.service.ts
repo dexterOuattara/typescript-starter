@@ -34,6 +34,7 @@ export class AuthService {
           lastName: dto.lastName,
           gender: dto.gender,
           telephone: dto.telephone,
+          photo: dto.photo
         },
       });
 
