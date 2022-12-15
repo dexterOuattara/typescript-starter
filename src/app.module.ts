@@ -13,6 +13,7 @@ import { DeoitModule } from './deoit/deoit.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { ArticlesModule } from './articles/articles.module';
 import { ServicesModule } from './services/services.module';
+import { ReferentsModule } from './referents/referents.module';
 
 
 
@@ -51,6 +52,7 @@ import { ServicesModule } from './services/services.module';
     PrismaModule,
     ArticlesModule,
     ServicesModule,
+    ReferentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

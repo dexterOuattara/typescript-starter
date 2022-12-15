@@ -5,6 +5,8 @@ CREATE TABLE "users" (
     "lastName" TEXT,
     "email" TEXT NOT NULL,
     "hash" TEXT NOT NULL,
+    "telephone" TEXT NOT NULL,
+    "gender" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateAt" TIMESTAMP(3) NOT NULL,
 
@@ -26,16 +28,16 @@ CREATE TABLE "articles" (
 );
 
 -- CreateTable
-CREATE TABLE "bookmarks" (
+CREATE TABLE "referents" (
     "id" SERIAL NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updateAt" TIMESTAMP(3) NOT NULL,
-    "title" TEXT NOT NULL,
-    "description" TEXT,
-    "link" TEXT NOT NULL,
+    "firstName" TEXT,
+    "lastName" TEXT,
+    "email" TEXT NOT NULL,
+    "telephone" TEXT NOT NULL,
+    "gender" TEXT NOT NULL,
     "userId" INTEGER NOT NULL,
 
-    CONSTRAINT "bookmarks_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "referents_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -63,4 +65,4 @@ CREATE UNIQUE INDEX "services_title_key" ON "services"("title");
 ALTER TABLE "articles" ADD CONSTRAINT "articles_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "bookmarks" ADD CONSTRAINT "bookmarks_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "referents" ADD CONSTRAINT "referents_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

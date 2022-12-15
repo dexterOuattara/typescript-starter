@@ -17,13 +17,13 @@ model User {
   lastName  String?
   email String @unique
   hash  String
-
-
+  telephone String
+  gender String
 
   createdAt DateTime @default(now())
   updateAt  DateTime @updatedAt
 
-  bookmarks Bookmark[]
+  referents Referent[]
   articles Article[]
 
   @@map("users")
@@ -42,22 +42,20 @@ model Article {
   user   User @relation(fields: [userId], references: [id])
 
   @@map("articles")
-
 }
 
-model Bookmark {
+model Referent {
   id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updateAt  DateTime @updatedAt
-
-  title       String
-  description String?
-  link        String
+  firstName String?
+  lastName  String?
+  email String 
+  telephone String
+  gender String
 
   userId Int
   user   User @relation(fields: [userId], references: [id])
 
-  @@map("bookmarks")
+  @@map("referents")
 }
 
 model Service {

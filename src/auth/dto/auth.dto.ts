@@ -2,7 +2,21 @@ import {
   IsEmail,
   IsNotEmpty,
   IsString,
+  IsDate
 } from 'class-validator';
+
+
+export class AuthsignDto {
+  [x: string]: string;
+  @IsEmail()
+  @IsNotEmpty()
+  email: string;
+
+  @IsString()
+  @IsNotEmpty()
+  password: string;
+}
+
 
 export class AuthDto {
   [x: string]: string;
@@ -21,10 +35,30 @@ export class AuthDto {
   @IsString()
   @IsNotEmpty()
   lastName: string;
+
+  @IsString()
+  @IsNotEmpty()
+  telephone: string;
+
+  @IsString()
+  @IsNotEmpty()
+  gender: string;
 }
 
 
-export class AuthsignDto {
+export class UpdatePasswordDto {
+
+  @IsString()
+  @IsNotEmpty()
+  new_password: string;
+
+  @IsString()
+  @IsNotEmpty()
+  old_password: string;
+
+}
+
+export class UserDto {
   [x: string]: string;
   @IsEmail()
   @IsNotEmpty()
@@ -32,5 +66,9 @@ export class AuthsignDto {
 
   @IsString()
   @IsNotEmpty()
-  password: string;
+  firstName: string;
+
+  @IsString()
+  @IsNotEmpty()
+  lastName: string;
 }

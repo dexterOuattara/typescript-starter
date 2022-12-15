@@ -1,10 +1,12 @@
 import {
+  HttpException,
+  HttpStatus,
   ForbiddenException,
   Injectable,
 } from '@nestjs/common';
-import { User, Bookmark,Article } from '@prisma/client';
+import { User} from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { AuthDto, AuthsignDto } from './dto';
+import { AuthDto, AuthsignDto, UpdatePasswordDto } from './dto';
 import * as argon from 'argon2';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import { JwtService } from '@nestjs/jwt';
@@ -29,7 +31,9 @@ export class AuthService {
           email: dto.email,
           hash,
           firstName: dto.firstName,
-          lastName: dto.lastName
+          lastName: dto.lastName,
+          gender: dto.gender,
+          telephone: dto.telephone,
         },
       });
 
@@ -97,4 +101,35 @@ export class AuthService {
       access_token: token,
     };
   }
+
+  
+
+  //use by user module to change user password
+    async updatePassword(dto: UpdatePasswordDto, id: number): 
+      Promise<User> {
+        const user = await this.prisma.user.findUnique({
+            where: {id}
+        });
+        if (!user) {
+            throw new HttpException("invalid_credentials",  
+                HttpStatus.UNAUTHORIZED);
+        }
+       // compare the password
+    const pwMatches = await argon.verify(
+      user.hash,
+      dto.old_password,
+    );
+    // if password incorrect throw an exception
+    if (!pwMatches)
+      throw new ForbiddenException(
+        'Credentials incorrects',
+      );
+        return await this.prisma.user.update({
+            where: {id},
+            data: {hash: await argon.hash(dto.new_password)} 
+        });
+    }
 }
+
+
+

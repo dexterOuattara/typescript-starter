@@ -6,7 +6,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { AuthDto, AuthsignDto } from './dto';
+import { AuthDto, AuthsignDto, UpdatePasswordDto } from './dto';
 
 @Controller('auth')
 export class AuthController {
@@ -21,5 +21,11 @@ export class AuthController {
   @Post('signin')
   signin(@Body() dto: AuthsignDto) {
     return this.authService.signin(dto);
+  }
+
+  @HttpCode(HttpStatus.OK)
+  @Post('updatePassword')
+  updatePassword(@Body() dto: UpdatePasswordDto, id: number) {
+    return this.authService.updatePassword(dto, id);
   }
 }
