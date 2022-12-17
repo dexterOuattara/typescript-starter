@@ -32,7 +32,7 @@
 $ npm install
 ```
 
-## CREATE ane EDIT .env File
+## CREATE and EDIT .env File
 
 ```bash
 
@@ -40,7 +40,15 @@ $ npm install
 
 ```
 
-## Running PRISMA step 2
+## Running SEED step 2
+
+```bash
+# seed the database with the following command line
+$ npx prisma db seed 
+
+```
+
+## Running PRISMA step 3
 
 ```bash
 # development
@@ -48,6 +56,13 @@ $ npx prisma studio
 
 ```
 
+## Start the SERVER step 4
+
+```bash
+# development
+$ npm start
+
+```
 
 
 ## Test
