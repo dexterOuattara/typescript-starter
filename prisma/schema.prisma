@@ -27,6 +27,7 @@ model User {
 
   referents Referent[]
   articles Article[]
+  badges Badge[]
 
   @@map("users")
 }
@@ -48,17 +49,36 @@ model Article {
 
 model Referent {
   id        Int      @id @default(autoincrement())
-  firstName String?
+  firstName String? 
   lastName  String?
-  email String 
+  email String  @unique
   telephone String
   gender String
 
   userId Int
   user   User @relation(fields: [userId], references: [id])
 
+  badges Badge[]
+
+
   @@map("referents")
 }
+
+
+
+model Badge {
+  id        Int      @id @default(autoincrement())
+  qrcodeId Int? @unique
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+
+  referents Referent[]
+
+
+  @@map("badges")
+}
+
 
 model Service {
   id          Int      @id @default(autoincrement())

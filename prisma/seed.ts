@@ -8,14 +8,77 @@ const prisma = new PrismaClient();
 async function main() {
   // create two dummy articles
 
+
+    // users seed
+
+    const user1 = await prisma.user.upsert({
+      where: { email: "kokodo@yahoo.fr" },
+      update: {},
+      create: {
+        firstName: "Kokodo",
+        lastName: "Morine",
+        email: "kokodo@yahoo.fr",
+        hash: "123456789",
+        telephone: "+225588555",
+        gender: "Male",
+        photo: "maledr.jpg",
+        birthday: "1970-01-01T00:00:00.000Z",
+      },
+    });
+
+    const user2 = await prisma.user.upsert({
+      where: { email: "treserioer@yahoo.fr" },
+      update: {},
+      create: {
+        firstName: "Treserioer",
+        lastName: "Morine",
+        email: "treserioer@yahoo.fr",
+        hash: "123456789",
+        telephone: "+225588555",
+        gender: "Male",
+        photo: "maledr.jpg",
+        birthday: "1990-01-01T00:00:00.000Z",
+      },
+    });
+
+    const user3 = await prisma.user.upsert({
+      where: { email: "gerduir@yahoo.fr" },
+      update: {},
+      create: {
+        firstName: "Gerduir",
+        lastName: "Morine",
+        email: "gerduir@yahoo.fr",
+        hash: "123456789",
+        telephone: "+225588555",
+        gender: "Male",
+        photo: "maledr.jpg",
+        birthday: "1986-01-01T00:00:00.000Z",
+      },
+    });
+
+    const user4 = await prisma.user.upsert({
+      where: { email: "derui@yahoo.fr" },
+      update: {},
+      create: {
+        firstName: "Derui",
+        lastName: "Morine",
+        email: "derui@yahoo.fr",
+        hash: "123456789",
+        telephone: "+225588555",
+        gender: "Male",
+        photo: "maledr.jpg",
+        birthday: "1980-01-01T00:00:00.000Z",
+      },
+    });
+
+    
     // article seed
 
-
-  const post3 = await prisma.article.upsert({
-    where: { title: '8 Prisma Adds Support for MongoDB' },
+  const article1 = await prisma.article.upsert({
+    where: { title: 'Article 1' },
     update: {},
     create: {
-      title: '33 Prisma Adds Support for MongoDB',
+      title: 'Article 1',
       body: 'Support for MongoDB has been one of the most requested features since the initial release of...',
       description:
         "We are excited to share that today's Prisma ORM release adds stable support for MongoDB!",
@@ -24,11 +87,11 @@ async function main() {
     },
   });
 
-  const post4 = await prisma.article.upsert({
-    where: { title: "9 What's new in Prisma? (Q1/22)" },
+  const article2 = await prisma.article.upsert({
+    where: { title: "Article 2" },
     update: {},
     create: {
-      title: "44 What's new in Prisma? (Q1/22)",
+      title: "Article 2",
       body: 'Our engineers have been working hard, issuing new releases with many improvements...',
       description:
         'Learn about everything in the Prisma ecosystem and community from January to March 2022.',
@@ -37,11 +100,11 @@ async function main() {
     },
   });
 
-  const post5 = await prisma.article.upsert({
-    where: { title: '6 Prisma Adds Support for MongoDB' },
+  const article3 = await prisma.article.upsert({
+    where: { title: 'Article 2' },
     update: {},
     create: {
-      title: '11 Prisma Adds Support for MongoDB',
+      title: 'Article 2',
       body: 'Support for MongoDB has been one of the most requested features since the initial release of...',
       description:
         "We are excited to share that today's Prisma ORM release adds stable support for MongoDB!",
@@ -50,11 +113,11 @@ async function main() {
     },
   });
 
-  const post6 = await prisma.article.upsert({
-    where: { title: " 7 What's new in Prisma? (Q1/22)" },
+  const article4 = await prisma.article.upsert({
+    where: { title: "Article 3" },
     update: {},
     create: {
-      title: "22 What's new in Prisma? (Q1/22)",
+      title: "Article 3",
       body: 'Our engineers have been working hard, issuing new releases with many improvements...',
       description:
         'Learn about everything in the Prisma ecosystem and community from January to March 2022.',
@@ -63,11 +126,11 @@ async function main() {
     },
   });
 
-  const post7 = await prisma.article.upsert({
-    where: { title: '10 Prisma Adds Support for MongoDB' },
+  const article5 = await prisma.article.upsert({
+    where: { title: 'Article 4' },
     update: {},
     create: {
-      title: '55 Prisma Adds Support for MongoDB',
+      title: 'Article 4',
       body: 'Support for MongoDB has been one of the most requested features since the initial release of...',
       description:
         "We are excited to share that today's Prisma ORM release adds stable support for MongoDB!",
@@ -76,11 +139,11 @@ async function main() {
     },
   });
 
-  const post8 = await prisma.article.upsert({
-    where: { title: "11 What's new in Prisma? (Q1/22)" },
+  const article6 = await prisma.article.upsert({
+    where: { title: "Article 5" },
     update: {},
     create: {
-      title: "66 What's new in Prisma? (Q1/22)",
+      title: "Article 5",
       body: 'Our engineers have been working hard, issuing new releases with many improvements...',
       description:
         'Learn about everything in the Prisma ecosystem and community from January to March 2022.',
@@ -91,84 +154,146 @@ async function main() {
 
   // services seed
 
-  const post10 = await prisma.service.upsert({
-    where: { title: "11 What's new in Prisma? (Q1/22)" },
+  const service1 = await prisma.service.upsert({
+    where: { title: "Médecine générale" },
     update: {},
     create: {
-      title: "11 What's new in Prisma? (Q1/22)",
-      description:
-        'Learn about everything in the Prisma ecosystem and community from January to March 2022.',
-      published: true,
+      title: "Médecine générale",
+      description:'Fièvre, Rhume, Grippe, Maux de tête ou autre maladie qui requiert la médecine générale',
+      photo: "jason.jpg",
     },
+
   });
 
-  const post11 = await prisma.service.upsert({
-    where: { title: "112 What's new in Prisma? (Q1/22)" },
+  const service2 = await prisma.service.upsert({
+    where: { title: "Gynécologie obstétrique" },
     update: {},
     create: {
-      title: "112 What's new in Prisma? (Q1/22)",
-      description:
-        'Learn about everything in the Prisma ecosystem and community from January to March 2022.',
-      published: true,
+      title: "Gynécologie obstétrique",
+      description:'Gynécologie-Obstétrique, Planification familiale, Diagnostic prénatal',
+      photo: "jason.jpg",
     },
+
   });
 
-  const post12 = await prisma.service.upsert({
-    where: { title: "113 What's new in Prisma? (Q1/22)" },
+  const service3 = await prisma.service.upsert({
+    where: { title: "Pédiatrie" },
     update: {},
     create: {
-      title: "113 What's new in Prisma? (Q1/22)",
-      description:
-        'Learn about everything in the Prisma ecosystem and community from January to March 2022.',
-      published: true,
-    },
+      title: "Pédiatrie",
+      description:'Tout problème lié aux enfants, y compris les problèmes mentaux et physiques',
+      photo: "jason.jpg",
+      },
+
   });
 
-  const post13 = await prisma.service.upsert({
-    where: { title: "114 What's new in Prisma? (Q1/22)" },
+  // referents seed
+
+  const referent1 = await prisma.referent.upsert({
+    where: { email: "remeo@yahoo.fr" },
     update: {},
     create: {
-      title: "114 What's new in Prisma? (Q1/22)",
-      description:
-        'Learn about everything in the Prisma ecosystem and community from January to March 2022.',
-      published: true,
+      firstName: "Kouadio",
+      lastName: "Morine",
+      email: "remeo@yahoo.fr",
+      telephone: "+225588555",
+      gender: "Male",
+      userId: 1
     },
+
   });
 
-  const post14 = await prisma.service.upsert({
-    where: { title: "115 What's new in Prisma? (Q1/22)" },
+  const referent2 = await prisma.referent.upsert({
+    where: { email: "prutoe@yahoo.fr" },
     update: {},
     create: {
-      title: "115 What's new in Prisma? (Q1/22)",
-      description:
-        'Learn about everything in the Prisma ecosystem and community from January to March 2022.',
-      published: true,
+      firstName: "Kouadio",
+      lastName: "Morine",
+      email: "prutoe@yahoo.fr",
+      telephone: "+225588555",
+      gender: "Male",
+      userId: 1
     },
+
   });
 
-  const post15 = await prisma.service.upsert({
-    where: { title: "116 What's new in Prisma? (Q1/22)" },
+  const referent3 = await prisma.referent.upsert({
+    where: { email: "predurerdf@yahoo.fr" },
     update: {},
     create: {
-      title: "116 What's new in Prisma? (Q1/22)",
-      description:
-        'Learn about everything in the Prisma ecosystem and community from January to March 2022.',
-      published: true,
+      firstName: "Kouadio",
+      lastName: "Morine",
+      email: "predurerdf@yahoo.fr",
+      telephone: "+225588555",
+      gender: "Male",
+      userId: 1
     },
+
   });
 
-  const post16 = await prisma.service.upsert({
-    where: { title: "117 What's new in Prisma? (Q1/22)" },
+  const referent4 = await prisma.referent.upsert({
+    where: { email: "vuturer@yahoo.fr" },
     update: {},
     create: {
-      title: "117 What's new in Prisma? (Q1/22)",
-      description:
-        'Learn about everything in the Prisma ecosystem and community from January to March 2022.',
-      published: true,
+      firstName: "Kouadio",
+      lastName: "Morine",
+      email: "vuturer@yahoo.fr",
+      telephone: "+225588555",
+      gender: "Male",
+      userId: 1
     },
+
   });
 
-  console.log({post3,post4,post5,post6,post7,post8,post10, post11, post12,post13, post14,post15,post16 });
+  const referent5 = await prisma.referent.upsert({
+    where: { email: "frertui@yahoo.fr" },
+    update: {},
+    create: {
+      firstName: "Kouadio",
+      lastName: "Morine",
+      email: "frertui@yahoo.fr",
+      telephone: "+225588555",
+      gender: "Male",
+      userId: 1
+    },
+
+  });
+
+  const referent6 = await prisma.referent.upsert({
+    where: { email: "podoreru@yahoo.fr" },
+    update: {},
+    create: {
+      firstName: "Kouadio",
+      lastName: "Morine",
+      email: "podoreru@yahoo.fr",
+      telephone: "+225588555",
+      gender: "Male",
+      userId: 1
+    },
+
+  });
+
+    // badges seed
+
+    // const badge1 = await prisma.badge.upsert({
+    //   where: { qrcodeId: 123366 },
+    //   update: {},
+    //   create: {
+    //     qrcodeId: 123366,
+    //     userId: 1,
+    //     referents: "podoreru@yahoo.fr"
+    //   },
+    // });
+
+  console.log(
+    {
+      user1, user2, user3, user4, // user seed
+      article1,article2,article3,article4,article5,article6, // article seed
+      service1, service2, service3, // services seed
+      referent1, referent2, referent3,referent4, referent5, referent6, // referents seed
+
+  }
+  );
 }
 
 // execute the main function

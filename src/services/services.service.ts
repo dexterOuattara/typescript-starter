@@ -22,9 +22,7 @@ export class ServicesService {
   }
 
   findDrafts() {
-    return this.prisma.service.findMany({
-      where: { published: false },
-    });
+    return this.prisma.service.findMany({});
   }
 
   async findOne(id: number) {
