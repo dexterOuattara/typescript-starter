@@ -18,19 +18,59 @@ model User {
   email String @unique
   hash  String
   telephone String
-  gender String
+  role      Gender
   photo String? @default("default.png")
   birthday DateTime
+
+  badgeGenerator BadgeGenerator[]
+  articles Article[]
+
 
   createdAt DateTime @default(now())
   updateAt  DateTime @updatedAt
 
-  referents Referent[]
-  articles Article[]
-  badges Badge[]
-
   @@map("users")
 }
+
+
+model Referent {
+  id        Int      @id @default(autoincrement())
+  firstName String? 
+  lastName  String?
+  email String  @unique
+  telephone String
+  role      Gender
+
+  badgeGenerator BadgeGenerator[]
+
+  @@map("referents")
+}
+
+
+
+model BadgeGenerator {
+  qrcodeId Int? @unique
+  userId Int
+  referentId Int
+  user   User @relation(fields: [userId], references: [id])
+  referent   Referent @relation(fields: [referentId], references: [id])
+
+  @@id([userId, referentId])
+}
+
+
+model Service {
+  id          Int      @id @default(autoincrement())
+  title       String   @unique
+  description String?
+  photo String? @default("default.png")
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("services")
+}
+
 
 model Article {
   id          Int      @id @default(autoincrement())
@@ -47,47 +87,13 @@ model Article {
   @@map("articles")
 }
 
-model Referent {
-  id        Int      @id @default(autoincrement())
-  firstName String? 
-  lastName  String?
-  email String  @unique
-  telephone String
-  gender String
 
-  userId Int
-  user   User @relation(fields: [userId], references: [id])
-
-  badges Badge[]
-
-
-  @@map("referents")
+enum UserRole {
+  PATIENT
+  STANDARDIST
 }
 
-
-
-model Badge {
-  id        Int      @id @default(autoincrement())
-  qrcodeId Int? @unique
-
-  userId Int
-  user   User @relation(fields: [userId], references: [id])
-
-  referents Referent[]
-
-
-  @@map("badges")
-}
-
-
-model Service {
-  id          Int      @id @default(autoincrement())
-  title       String   @unique
-  description String?
-  photo String? @default("default.png")
-
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  @@map("services")
+enum Gender {
+  MALE
+  FEMALE
 }

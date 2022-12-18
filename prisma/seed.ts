@@ -198,7 +198,6 @@ async function main() {
       email: "remeo@yahoo.fr",
       telephone: "+225588555",
       gender: "Male",
-      userId: 1
     },
 
   });
@@ -212,7 +211,6 @@ async function main() {
       email: "prutoe@yahoo.fr",
       telephone: "+225588555",
       gender: "Male",
-      userId: 1
     },
 
   });
@@ -226,7 +224,6 @@ async function main() {
       email: "predurerdf@yahoo.fr",
       telephone: "+225588555",
       gender: "Male",
-      userId: 1
     },
 
   });
@@ -240,7 +237,6 @@ async function main() {
       email: "vuturer@yahoo.fr",
       telephone: "+225588555",
       gender: "Male",
-      userId: 1
     },
 
   });
@@ -254,7 +250,6 @@ async function main() {
       email: "frertui@yahoo.fr",
       telephone: "+225588555",
       gender: "Male",
-      userId: 1
     },
 
   });
@@ -268,7 +263,6 @@ async function main() {
       email: "podoreru@yahoo.fr",
       telephone: "+225588555",
       gender: "Male",
-      userId: 1
     },
 
   });
@@ -306,3 +300,4 @@ main()
     // close Prisma Client at the end
     await prisma.$disconnect();
   });
+
