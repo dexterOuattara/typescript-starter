@@ -12,7 +12,6 @@ datasource db {
 
 model User {
   id Int @id @default(autoincrement())
-
   firstName String?
   lastName  String?
   email String @unique
@@ -52,6 +51,7 @@ model BadgeGenerator {
   qrcodeId Int? @unique
   userId Int
   referentId Int
+
   user   User @relation(fields: [userId], references: [id])
   referent   Referent @relation(fields: [referentId], references: [id])
 
@@ -77,6 +77,7 @@ model Article {
   title       String   @unique
   description String?
   body        String
+  
   published   Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
