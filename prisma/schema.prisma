@@ -23,7 +23,8 @@ model User {
 
   referents Referent[]
   qrcodes   Qrcode[]
-  articles Article[]
+  articles  Article[]
+  tickets   Ticket[]
 
   createdAt DateTime @default(now())
   updateAt  DateTime @updatedAt
@@ -35,8 +36,8 @@ model Referent {
   id        Int     @id @unique @default(autoincrement())
   firstName String?
   lastName  String?
-  email     String  
-  telephone String  
+  email     String
+  telephone String
 
   userId Int
   user   User @relation(fields: [userId], references: [id])
@@ -71,10 +72,11 @@ model Article {
 }
 
 model Service {
-  id          Int     @id @default(autoincrement())
-  title       String  @unique
+  id          Int      @id @default(autoincrement())
+  title       String   @unique
   description String?
-  photo       String? @default("default.png")
+  photo       String?  @default("default.png")
+  tickets     Ticket[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -82,7 +84,19 @@ model Service {
   @@map("services")
 }
 
+model Ticket {
+  id        Int @unique
+  userId    Int
+  serviceId Int
 
+  user    User    @relation(fields: [userId], references: [id])
+  service Service @relation(fields: [serviceId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([userId, serviceId])
+}
 
 enum UserRole {
   PATIENT

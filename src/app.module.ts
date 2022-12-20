@@ -15,6 +15,7 @@ import { ArticlesModule } from './articles/articles.module';
 import { ServicesModule } from './services/services.module';
 import { ReferentsModule } from './referents/referents.module';
 import { QrcodesModule } from './qrcodes/qrcodes.module';
+import { TicketsModule } from './tickets/tickets.module';
 
 
 
@@ -55,6 +56,7 @@ import { QrcodesModule } from './qrcodes/qrcodes.module';
     ServicesModule,
     ReferentsModule,
     QrcodesModule,
+    TicketsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

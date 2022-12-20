@@ -9,6 +9,5 @@ export class QrcodeEntity implements Qrcode {
     code: string;
   
     @ApiProperty()
-    userId: number;    
-    
+    userId: number;
   }

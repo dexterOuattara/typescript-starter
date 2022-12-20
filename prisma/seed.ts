@@ -221,7 +221,7 @@ async function main() {
     where: { id: 1 },
     update: {},
     create: {
-      id:1,
+      id: 1,
       firstName: 'Kouadio',
       lastName: 'Morine',
       email: 'remeo@yahoo.fr',
@@ -234,7 +234,7 @@ async function main() {
     where: { id: 2 },
     update: {},
     create: {
-      id:2,
+      id: 2,
       firstName: 'Prodo',
       lastName: 'Morine',
       email: 'prutoe@yahoo.fr',
@@ -247,7 +247,7 @@ async function main() {
     where: { id: 3 },
     update: {},
     create: {
-      id:3,
+      id: 3,
       firstName: 'Romelu',
       lastName: 'Morine',
       email: 'predurerdf@yahoo.fr',
@@ -260,7 +260,7 @@ async function main() {
     where: { id: 4 },
     update: {},
     create: {
-      id:4,
+      id: 4,
       firstName: 'Deruni',
       lastName: 'Morine',
       email: 'vuturer@yahoo.fr',
@@ -273,7 +273,7 @@ async function main() {
     where: { id: 5 },
     update: {},
     create: {
-      id:5,
+      id: 5,
       firstName: 'Volomer',
       lastName: 'Morine',
       email: 'frertui@yahoo.fr',
@@ -286,7 +286,7 @@ async function main() {
     where: { id: 6 },
     update: {},
     create: {
-      id:6,
+      id: 6,
       firstName: 'Cgonei',
       lastName: 'Morine',
       email: 'podoreru@yahoo.fr',
@@ -351,35 +351,75 @@ async function main() {
     },
   });
 
+  // Ticket SEED
+
+  const ticket1 = await prisma.ticket.upsert({
+    where: { id: 1 },
+    update: {},
+    create: {
+      id: 1,
+      userId: 1,
+      serviceId: 1,
+    },
+  });
+
+  const ticket2 = await prisma.ticket.upsert({
+    where: { id: 2 },
+    update: {},
+    create: {
+      id: 2,
+      userId: 2,
+      serviceId: 1,
+    },
+  });
+
+  const ticket3 = await prisma.ticket.upsert({
+    where: { id: 3 },
+    update: {},
+    create: {
+      id: 3,
+      userId: 3,
+      serviceId: 2,
+    },
+  });
+
   console.log({
+    // user seed
     user1,
     user2,
     user3,
     user4,
     user5,
-    user6, // user seed
-    // badge1, // user seed
+    user6,
+    // article seed
     article1,
     article2,
     article3,
     article4,
     article5,
-    article6, // article seed
+    article6,
+    // services seed
     service1,
     service2,
-    service3, // services seed
+    service3,
+    // referents seed
     referent1,
     referent2,
     referent3,
     referent4,
     referent5,
-    referent6, // referents seed
+    referent6,
+    // qrcode seed
     qrcode1,
     qrcode2,
     qrcode3,
     qrcode4,
     qrcode5,
-    qrcode6, // referents seed
+    qrcode6,
+    // ticket seed
+    ticket1,
+    ticket2,
+    ticket3,
   });
 }
 

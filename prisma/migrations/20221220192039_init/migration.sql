@@ -68,6 +68,17 @@ CREATE TABLE "services" (
     CONSTRAINT "services_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "Ticket" (
+    "id" INTEGER NOT NULL,
+    "userId" INTEGER NOT NULL,
+    "serviceId" INTEGER NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Ticket_pkey" PRIMARY KEY ("userId","serviceId")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
@@ -83,6 +94,9 @@ CREATE UNIQUE INDEX "articles_title_key" ON "articles"("title");
 -- CreateIndex
 CREATE UNIQUE INDEX "services_title_key" ON "services"("title");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "Ticket_id_key" ON "Ticket"("id");
+
 -- AddForeignKey
 ALTER TABLE "referents" ADD CONSTRAINT "referents_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
@@ -91,3 +105,9 @@ ALTER TABLE "qrcodes" ADD CONSTRAINT "qrcodes_userId_fkey" FOREIGN KEY ("userId"
 
 -- AddForeignKey
 ALTER TABLE "articles" ADD CONSTRAINT "articles_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Ticket" ADD CONSTRAINT "Ticket_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Ticket" ADD CONSTRAINT "Ticket_serviceId_fkey" FOREIGN KEY ("serviceId") REFERENCES "services"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
