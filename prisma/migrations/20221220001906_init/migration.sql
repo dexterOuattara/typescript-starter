@@ -72,7 +72,7 @@ CREATE TABLE "services" (
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "referents_email_key" ON "referents"("email");
+CREATE UNIQUE INDEX "referents_id_key" ON "referents"("id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "qrcodes_code_key" ON "qrcodes"("code");

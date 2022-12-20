@@ -218,9 +218,10 @@ async function main() {
   // referents seed
 
   const referent1 = await prisma.referent.upsert({
-    where: { email: 'remeo@yahoo.fr' },
+    where: { id: 1 },
     update: {},
     create: {
+      id:1,
       firstName: 'Kouadio',
       lastName: 'Morine',
       email: 'remeo@yahoo.fr',
@@ -230,9 +231,10 @@ async function main() {
   });
 
   const referent2 = await prisma.referent.upsert({
-    where: { email: 'prutoe@yahoo.fr' },
+    where: { id: 2 },
     update: {},
     create: {
+      id:2,
       firstName: 'Prodo',
       lastName: 'Morine',
       email: 'prutoe@yahoo.fr',
@@ -242,9 +244,10 @@ async function main() {
   });
 
   const referent3 = await prisma.referent.upsert({
-    where: { email: 'predurerdf@yahoo.fr' },
+    where: { id: 3 },
     update: {},
     create: {
+      id:3,
       firstName: 'Romelu',
       lastName: 'Morine',
       email: 'predurerdf@yahoo.fr',
@@ -254,9 +257,10 @@ async function main() {
   });
 
   const referent4 = await prisma.referent.upsert({
-    where: { email: 'vuturer@yahoo.fr' },
+    where: { id: 4 },
     update: {},
     create: {
+      id:4,
       firstName: 'Deruni',
       lastName: 'Morine',
       email: 'vuturer@yahoo.fr',
@@ -266,9 +270,10 @@ async function main() {
   });
 
   const referent5 = await prisma.referent.upsert({
-    where: { email: 'frertui@yahoo.fr' },
+    where: { id: 5 },
     update: {},
     create: {
+      id:5,
       firstName: 'Volomer',
       lastName: 'Morine',
       email: 'frertui@yahoo.fr',
@@ -278,9 +283,10 @@ async function main() {
   });
 
   const referent6 = await prisma.referent.upsert({
-    where: { email: 'podoreru@yahoo.fr' },
+    where: { id: 6 },
     update: {},
     create: {
+      id:6,
       firstName: 'Cgonei',
       lastName: 'Morine',
       email: 'podoreru@yahoo.fr',

@@ -32,11 +32,11 @@ model User {
 }
 
 model Referent {
-  id        Int     @id @default(autoincrement())
+  id        Int     @id @unique @default(autoincrement())
   firstName String?
   lastName  String?
-  email     String  @unique
-  telephone String
+  email     String  
+  telephone String  
 
   userId Int
   user   User @relation(fields: [userId], references: [id])
