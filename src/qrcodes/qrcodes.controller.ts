@@ -21,7 +21,6 @@ import {
 } from '@nestjs/swagger';
 import { QrcodeEntity } from './entities/qrcode.entity';
 import { PrismaClientExceptionFilter } from 'src/prisma-client-exception.filter';
-import { number } from 'joi';
 
 
 @Controller('qrcodes')

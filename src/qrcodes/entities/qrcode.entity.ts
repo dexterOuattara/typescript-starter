@@ -1,4 +1,4 @@
-import { Qrcode, UserRole } from '@prisma/client';
+import { Qrcode } from '@prisma/client';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class QrcodeEntity implements Qrcode {

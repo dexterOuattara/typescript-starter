@@ -82,6 +82,8 @@ model Service {
   @@map("services")
 }
 
+
+
 enum UserRole {
   PATIENT
   STANDARDIST
