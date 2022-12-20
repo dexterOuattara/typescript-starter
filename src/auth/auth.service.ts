@@ -28,11 +28,11 @@ export class AuthService {
       // save thr new user in the database
       const user = await this.prisma.user.create({
         data: {
-          email: dto.email,
           hash,
           firstName: dto.firstName,
           lastName: dto.lastName,
-          gender: dto.gender,
+          email: dto.email,
+          role: dto.UserRole,
           telephone: dto.telephone,
           photo: dto.photo,
           birthday: dto.birthday,

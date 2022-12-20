@@ -8,71 +8,99 @@ const prisma = new PrismaClient();
 async function main() {
   // create two dummy articles
 
+  // users seed
 
-    // users seed
+  const user1 = await prisma.user.upsert({
+    where: { email: 'kokodo@yahoo.fr' },
+    update: {},
+    create: {
+      firstName: 'Kokodo',
+      lastName: 'Morine',
+      email: 'kokodo@yahoo.fr',
+      hash: '123456789',
+      telephone: '+225588555',
+      role: 'PATIENT',
+      photo: 'maledr.jpg',
+      birthday: '1970-01-01T00:00:00.000Z',
+    },
+  });
 
-    const user1 = await prisma.user.upsert({
-      where: { email: "kokodo@yahoo.fr" },
-      update: {},
-      create: {
-        firstName: "Kokodo",
-        lastName: "Morine",
-        email: "kokodo@yahoo.fr",
-        hash: "123456789",
-        telephone: "+225588555",
-        gender: "Male",
-        photo: "maledr.jpg",
-        birthday: "1970-01-01T00:00:00.000Z",
-      },
-    });
+  const user2 = await prisma.user.upsert({
+    where: { email: 'treserioer@yahoo.fr' },
+    update: {},
+    create: {
+      firstName: 'Treserioer',
+      lastName: 'Morine',
+      email: 'treserioer@yahoo.fr',
+      hash: '123456789',
+      telephone: '+225588555',
+      role: 'PATIENT',
+      photo: 'maledr.jpg',
+      birthday: '1990-01-01T00:00:00.000Z',
+    },
+  });
 
-    const user2 = await prisma.user.upsert({
-      where: { email: "treserioer@yahoo.fr" },
-      update: {},
-      create: {
-        firstName: "Treserioer",
-        lastName: "Morine",
-        email: "treserioer@yahoo.fr",
-        hash: "123456789",
-        telephone: "+225588555",
-        gender: "Male",
-        photo: "maledr.jpg",
-        birthday: "1990-01-01T00:00:00.000Z",
-      },
-    });
+  const user3 = await prisma.user.upsert({
+    where: { email: 'gerduir@yahoo.fr' },
+    update: {},
+    create: {
+      firstName: 'Gerduir',
+      lastName: 'Morine',
+      email: 'gerduir@yahoo.fr',
+      hash: '123456789',
+      telephone: '+225588555',
+      role: 'PATIENT',
+      photo: 'maledr.jpg',
+      birthday: '1986-01-01T00:00:00.000Z',
+    },
+  });
 
-    const user3 = await prisma.user.upsert({
-      where: { email: "gerduir@yahoo.fr" },
-      update: {},
-      create: {
-        firstName: "Gerduir",
-        lastName: "Morine",
-        email: "gerduir@yahoo.fr",
-        hash: "123456789",
-        telephone: "+225588555",
-        gender: "Male",
-        photo: "maledr.jpg",
-        birthday: "1986-01-01T00:00:00.000Z",
-      },
-    });
+  const user4 = await prisma.user.upsert({
+    where: { email: 'derui@yahoo.fr' },
+    update: {},
+    create: {
+      firstName: 'Derui',
+      lastName: 'Morine',
+      email: 'derui@yahoo.fr',
+      hash: '123456789',
+      telephone: '+225588555',
+      role: 'PATIENT',
+      photo: 'maledr.jpg',
+      birthday: '1980-01-01T00:00:00.000Z',
+    },
+  });
 
-    const user4 = await prisma.user.upsert({
-      where: { email: "derui@yahoo.fr" },
-      update: {},
-      create: {
-        firstName: "Derui",
-        lastName: "Morine",
-        email: "derui@yahoo.fr",
-        hash: "123456789",
-        telephone: "+225588555",
-        gender: "Male",
-        photo: "maledr.jpg",
-        birthday: "1980-01-01T00:00:00.000Z",
-      },
-    });
+  const user5 = await prisma.user.upsert({
+    where: { email: 'vodro@yahoo.fr' },
+    update: {},
+    create: {
+      firstName: 'Vodro',
+      lastName: 'Morine',
+      email: 'vodro@yahoo.fr',
+      hash: '123456789',
+      telephone: '+225588555',
+      role: 'PATIENT',
+      photo: 'maledr.jpg',
+      birthday: '1980-01-01T00:00:00.000Z',
+    },
+  });
 
-    
-    // article seed
+  const user6 = await prisma.user.upsert({
+    where: { email: 'louir@yahoo.fr' },
+    update: {},
+    create: {
+      firstName: 'Louis',
+      lastName: 'Morine',
+      email: 'louir@yahoo.fr',
+      hash: '123456789',
+      telephone: '+225588555',
+      role: 'PATIENT',
+      photo: 'maledr.jpg',
+      birthday: '1980-01-01T00:00:00.000Z',
+    },
+  });
+
+  // article seed
 
   const article1 = await prisma.article.upsert({
     where: { title: 'Article 1' },
@@ -83,20 +111,20 @@ async function main() {
       description:
         "We are excited to share that today's Prisma ORM release adds stable support for MongoDB!",
       published: false,
-      userId: 1
+      userId: 1,
     },
   });
 
   const article2 = await prisma.article.upsert({
-    where: { title: "Article 2" },
+    where: { title: 'Article 2' },
     update: {},
     create: {
-      title: "Article 2",
+      title: 'Article 2',
       body: 'Our engineers have been working hard, issuing new releases with many improvements...',
       description:
         'Learn about everything in the Prisma ecosystem and community from January to March 2022.',
       published: true,
-      userId: 1
+      userId: 1,
     },
   });
 
@@ -109,20 +137,20 @@ async function main() {
       description:
         "We are excited to share that today's Prisma ORM release adds stable support for MongoDB!",
       published: false,
-      userId: 1
+      userId: 2,
     },
   });
 
   const article4 = await prisma.article.upsert({
-    where: { title: "Article 3" },
+    where: { title: 'Article 3' },
     update: {},
     create: {
-      title: "Article 3",
+      title: 'Article 3',
       body: 'Our engineers have been working hard, issuing new releases with many improvements...',
       description:
         'Learn about everything in the Prisma ecosystem and community from January to March 2022.',
       published: true,
-      userId: 1
+      userId: 2,
     },
   });
 
@@ -135,159 +163,218 @@ async function main() {
       description:
         "We are excited to share that today's Prisma ORM release adds stable support for MongoDB!",
       published: false,
-      userId: 1
+      userId: 2,
     },
   });
 
   const article6 = await prisma.article.upsert({
-    where: { title: "Article 5" },
+    where: { title: 'Article 5' },
     update: {},
     create: {
-      title: "Article 5",
+      title: 'Article 5',
       body: 'Our engineers have been working hard, issuing new releases with many improvements...',
       description:
         'Learn about everything in the Prisma ecosystem and community from January to March 2022.',
       published: true,
-      userId: 1
+      userId: 3,
     },
   });
 
   // services seed
 
   const service1 = await prisma.service.upsert({
-    where: { title: "Médecine générale" },
+    where: { title: 'Médecine générale' },
     update: {},
     create: {
-      title: "Médecine générale",
-      description:'Fièvre, Rhume, Grippe, Maux de tête ou autre maladie qui requiert la médecine générale',
-      photo: "jason.jpg",
+      title: 'Médecine générale',
+      description:
+        'Fièvre, Rhume, Grippe, Maux de tête ou autre maladie qui requiert la médecine générale',
+      photo: 'jason.jpg',
     },
-
   });
 
   const service2 = await prisma.service.upsert({
-    where: { title: "Gynécologie obstétrique" },
+    where: { title: 'Gynécologie obstétrique' },
     update: {},
     create: {
-      title: "Gynécologie obstétrique",
-      description:'Gynécologie-Obstétrique, Planification familiale, Diagnostic prénatal',
-      photo: "jason.jpg",
+      title: 'Gynécologie obstétrique',
+      description:
+        'Gynécologie-Obstétrique, Planification familiale, Diagnostic prénatal',
+      photo: 'jason.jpg',
     },
-
   });
 
   const service3 = await prisma.service.upsert({
-    where: { title: "Pédiatrie" },
+    where: { title: 'Pédiatrie' },
     update: {},
     create: {
-      title: "Pédiatrie",
-      description:'Tout problème lié aux enfants, y compris les problèmes mentaux et physiques',
-      photo: "jason.jpg",
-      },
-
+      title: 'Pédiatrie',
+      description:
+        'Tout problème lié aux enfants, y compris les problèmes mentaux et physiques',
+      photo: 'jason.jpg',
+    },
   });
 
   // referents seed
 
   const referent1 = await prisma.referent.upsert({
-    where: { email: "remeo@yahoo.fr" },
+    where: { email: 'remeo@yahoo.fr' },
     update: {},
     create: {
-      firstName: "Kouadio",
-      lastName: "Morine",
-      email: "remeo@yahoo.fr",
-      telephone: "+225588555",
-      gender: "Male",
+      firstName: 'Kouadio',
+      lastName: 'Morine',
+      email: 'remeo@yahoo.fr',
+      telephone: '+225588555',
+      userId: 1,
     },
-
   });
 
   const referent2 = await prisma.referent.upsert({
-    where: { email: "prutoe@yahoo.fr" },
+    where: { email: 'prutoe@yahoo.fr' },
     update: {},
     create: {
-      firstName: "Kouadio",
-      lastName: "Morine",
-      email: "prutoe@yahoo.fr",
-      telephone: "+225588555",
-      gender: "Male",
+      firstName: 'Prodo',
+      lastName: 'Morine',
+      email: 'prutoe@yahoo.fr',
+      telephone: '+225588555',
+      userId: 2,
     },
-
   });
 
   const referent3 = await prisma.referent.upsert({
-    where: { email: "predurerdf@yahoo.fr" },
+    where: { email: 'predurerdf@yahoo.fr' },
     update: {},
     create: {
-      firstName: "Kouadio",
-      lastName: "Morine",
-      email: "predurerdf@yahoo.fr",
-      telephone: "+225588555",
-      gender: "Male",
+      firstName: 'Romelu',
+      lastName: 'Morine',
+      email: 'predurerdf@yahoo.fr',
+      telephone: '+225588555',
+      userId: 3,
     },
-
   });
 
   const referent4 = await prisma.referent.upsert({
-    where: { email: "vuturer@yahoo.fr" },
+    where: { email: 'vuturer@yahoo.fr' },
     update: {},
     create: {
-      firstName: "Kouadio",
-      lastName: "Morine",
-      email: "vuturer@yahoo.fr",
-      telephone: "+225588555",
-      gender: "Male",
+      firstName: 'Deruni',
+      lastName: 'Morine',
+      email: 'vuturer@yahoo.fr',
+      telephone: '+225588555',
+      userId: 4,
     },
-
   });
 
   const referent5 = await prisma.referent.upsert({
-    where: { email: "frertui@yahoo.fr" },
+    where: { email: 'frertui@yahoo.fr' },
     update: {},
     create: {
-      firstName: "Kouadio",
-      lastName: "Morine",
-      email: "frertui@yahoo.fr",
-      telephone: "+225588555",
-      gender: "Male",
+      firstName: 'Volomer',
+      lastName: 'Morine',
+      email: 'frertui@yahoo.fr',
+      telephone: '+225588555',
+      userId: 5,
     },
-
   });
 
   const referent6 = await prisma.referent.upsert({
-    where: { email: "podoreru@yahoo.fr" },
+    where: { email: 'podoreru@yahoo.fr' },
     update: {},
     create: {
-      firstName: "Kouadio",
-      lastName: "Morine",
-      email: "podoreru@yahoo.fr",
-      telephone: "+225588555",
-      gender: "Male",
+      firstName: 'Cgonei',
+      lastName: 'Morine',
+      email: 'podoreru@yahoo.fr',
+      telephone: '+225588555',
+      userId: 6,
     },
-
   });
 
-    // badges seed
+  // Qrcode SEED
 
-    // const badge1 = await prisma.badge.upsert({
-    //   where: { qrcodeId: 123366 },
-    //   update: {},
-    //   create: {
-    //     qrcodeId: 123366,
-    //     userId: 1,
-    //     referents: "podoreru@yahoo.fr"
-    //   },
-    // });
+  const qrcode1 = await prisma.qrcode.upsert({
+    where: { code: 'name+Referent+111' },
+    update: {},
+    create: {
+      code: 'name+Referent+111',
+      userId: 1,
+    },
+  });
 
-  console.log(
-    {
-      user1, user2, user3, user4, // user seed
-      article1,article2,article3,article4,article5,article6, // article seed
-      service1, service2, service3, // services seed
-      referent1, referent2, referent3,referent4, referent5, referent6, // referents seed
+  const qrcode2 = await prisma.qrcode.upsert({
+    where: { code: 'name+Referent+222' },
+    update: {},
+    create: {
+      code: 'name+Referent+222',
+      userId: 2,
+    },
+  });
 
-  }
-  );
+  const qrcode3 = await prisma.qrcode.upsert({
+    where: { code: 'name+Referent+333' },
+    update: {},
+    create: {
+      code: 'name+Referent+333',
+      userId: 3,
+    },
+  });
+
+  const qrcode4 = await prisma.qrcode.upsert({
+    where: { code: 'name+Referent+444' },
+    update: {},
+    create: {
+      code: 'name+Referent+444',
+      userId: 4,
+    },
+  });
+
+  const qrcode5 = await prisma.qrcode.upsert({
+    where: { code: 'name+Referent+555' },
+    update: {},
+    create: {
+      code: 'name+Referent+555',
+      userId: 5,
+    },
+  });
+
+  const qrcode6 = await prisma.qrcode.upsert({
+    where: { code: 'name+Referent+665' },
+    update: {},
+    create: {
+      code: 'name+Referent+665',
+      userId: 6,
+    },
+  });
+
+  console.log({
+    user1,
+    user2,
+    user3,
+    user4,
+    user5,
+    user6, // user seed
+    // badge1, // user seed
+    article1,
+    article2,
+    article3,
+    article4,
+    article5,
+    article6, // article seed
+    service1,
+    service2,
+    service3, // services seed
+    referent1,
+    referent2,
+    referent3,
+    referent4,
+    referent5,
+    referent6, // referents seed
+    qrcode1,
+    qrcode2,
+    qrcode3,
+    qrcode4,
+    qrcode5,
+    qrcode6, // referents seed
+  });
 }
 
 // execute the main function
@@ -300,4 +387,3 @@ main()
     // close Prisma Client at the end
     await prisma.$disconnect();
   });
-

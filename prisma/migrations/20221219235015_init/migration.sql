@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "UserRole" AS ENUM ('PATIENT', 'STANDARDIST');
+CREATE TYPE "UserRole" AS ENUM ('PATIENT', 'STANDARDIST', 'ADMIN', 'STAFF');
 
 -- CreateEnum
 CREATE TYPE "Gender" AS ENUM ('MALE', 'FEMALE');
@@ -12,7 +12,7 @@ CREATE TABLE "users" (
     "email" TEXT NOT NULL,
     "hash" TEXT NOT NULL,
     "telephone" TEXT NOT NULL,
-    "role" "Gender" NOT NULL,
+    "role" "UserRole" NOT NULL,
     "photo" TEXT DEFAULT 'default.png',
     "birthday" TIMESTAMP(3) NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -28,30 +28,18 @@ CREATE TABLE "referents" (
     "lastName" TEXT,
     "email" TEXT NOT NULL,
     "telephone" TEXT NOT NULL,
-    "role" "Gender" NOT NULL,
+    "userId" INTEGER NOT NULL,
 
     CONSTRAINT "referents_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "BadgeGenerator" (
-    "qrcodeId" INTEGER,
-    "userId" INTEGER NOT NULL,
-    "referentId" INTEGER NOT NULL,
-
-    CONSTRAINT "BadgeGenerator_pkey" PRIMARY KEY ("userId","referentId")
-);
-
--- CreateTable
-CREATE TABLE "services" (
+CREATE TABLE "qrcodes" (
     "id" SERIAL NOT NULL,
-    "title" TEXT NOT NULL,
-    "description" TEXT,
-    "photo" TEXT DEFAULT 'default.png',
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "code" TEXT,
+    "userId" INTEGER NOT NULL,
 
-    CONSTRAINT "services_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "qrcodes_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -68,6 +56,18 @@ CREATE TABLE "articles" (
     CONSTRAINT "articles_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "services" (
+    "id" SERIAL NOT NULL,
+    "title" TEXT NOT NULL,
+    "description" TEXT,
+    "photo" TEXT DEFAULT 'default.png',
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "services_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
@@ -75,19 +75,19 @@ CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 CREATE UNIQUE INDEX "referents_email_key" ON "referents"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "BadgeGenerator_qrcodeId_key" ON "BadgeGenerator"("qrcodeId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "services_title_key" ON "services"("title");
+CREATE UNIQUE INDEX "qrcodes_code_key" ON "qrcodes"("code");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "articles_title_key" ON "articles"("title");
 
--- AddForeignKey
-ALTER TABLE "BadgeGenerator" ADD CONSTRAINT "BadgeGenerator_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+-- CreateIndex
+CREATE UNIQUE INDEX "services_title_key" ON "services"("title");
 
 -- AddForeignKey
-ALTER TABLE "BadgeGenerator" ADD CONSTRAINT "BadgeGenerator_referentId_fkey" FOREIGN KEY ("referentId") REFERENCES "referents"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "referents" ADD CONSTRAINT "referents_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "qrcodes" ADD CONSTRAINT "qrcodes_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "articles" ADD CONSTRAINT "articles_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -1,6 +1,6 @@
 // src/referents/entities/referent.entity.ts
 
-import { Referent } from '@prisma/client';
+import { Referent, UserRole } from '@prisma/client';
 import { ApiProperty } from '@nestjs/swagger';
 
 
@@ -21,7 +21,7 @@ export class ReferentEntity implements Referent {
     telephone: string;
 
     @ApiProperty()
-    gender: string;
+    role: UserRole;
 
     @ApiProperty()
     userId: number;

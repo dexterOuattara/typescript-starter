@@ -4,9 +4,11 @@ import {
   IsEmail,
   IsNotEmpty,
   IsNumber,
+  IsEnum,
 } from 'class-validator';
 
 import { ApiProperty } from '@nestjs/swagger';
+import { UserRole } from 'src/auth/enum/role-type.enum';
 
 export class CreateReferentDto {
   @ApiProperty()
@@ -26,8 +28,9 @@ export class CreateReferentDto {
   telephone: string;
 
   @ApiProperty()
-  @IsString()
-  gender: string;
+  @IsEnum(UserRole)
+  @IsNotEmpty()
+  readonly role: UserRole;
 
   @ApiProperty()
   @IsNumber()

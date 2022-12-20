@@ -2,12 +2,12 @@ import {
   IsEmail,
   IsNotEmpty,
   IsString,
-  IsDateString
+  IsDateString,
+  IsEnum
 } from 'class-validator';
 
 import { ApiProperty } from '@nestjs/swagger';
-
-
+import { UserRole } from '../enum/role-type.enum';
 export class AuthsignDto {
   [x: string]: string;
   @ApiProperty()
@@ -49,9 +49,9 @@ export class AuthDto {
   telephone: string;
 
   @ApiProperty()
-  @IsString()
+  @IsEnum(UserRole)
   @IsNotEmpty()
-  gender: string;
+  readonly role: UserRole;
 
   @ApiProperty()
   @IsString()
@@ -62,6 +62,7 @@ export class AuthDto {
   @IsDateString()
   @IsNotEmpty()
   birthday: Date;
+  UserRole: any;
 }
 
 
@@ -102,9 +103,9 @@ export class UserDto {
   telephone: string;
 
   @ApiProperty()
-  @IsString()
+  @IsEnum(UserRole)
   @IsNotEmpty()
-  gender: string;
+  readonly role: UserRole;
 
   @ApiProperty()
   @IsString()
@@ -116,3 +117,4 @@ export class UserDto {
   @IsNotEmpty()
   birthday: Date;
 }
+

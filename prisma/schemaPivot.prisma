@@ -1,0 +1,103 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  firstName String?
+  lastName  String?
+  email String @unique
+  hash  String
+  telephone String
+  role      UserRole
+  photo String? @default("default.png")
+  birthday DateTime
+
+  badgeGenerator BadgeGenerator[]
+  articles Article[]
+
+
+  createdAt DateTime @default(now())
+  updateAt  DateTime @updatedAt
+
+  @@map("users")
+}
+
+
+model Referent {
+  id        Int      @id @default(autoincrement())
+  firstName String? 
+  lastName  String?
+  email String  @unique
+  telephone String
+  // role      UserRole
+
+  badgeGenerator BadgeGenerator[]
+
+  @@map("referents")
+}
+
+
+
+model BadgeGenerator {
+  qrcodeId String? @unique
+  userId Int
+  referentId Int
+
+  user   User @relation(fields: [userId], references: [id])
+  referent   Referent @relation(fields: [referentId], references: [id])
+
+  @@id([userId, referentId])
+}
+
+
+model Service {
+  id          Int      @id @default(autoincrement())
+  title       String   @unique
+  description String?
+  photo String? @default("default.png")
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("services")
+}
+
+
+model Article {
+  id          Int      @id @default(autoincrement())
+  title       String   @unique
+  description String?
+  body        String
+  
+  published   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+
+  @@map("articles")
+}
+
+
+enum UserRole {
+  PATIENT
+  STANDARDIST
+  ADMIN
+  STAFF
+
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
