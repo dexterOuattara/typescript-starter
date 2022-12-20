@@ -88,6 +88,7 @@ model Ticket {
   id        Int @unique
   userId    Int
   serviceId Int
+  priority      Priority
 
   user    User    @relation(fields: [userId], references: [id])
   service Service @relation(fields: [serviceId], references: [id])
@@ -109,3 +110,10 @@ enum Gender {
   MALE
   FEMALE
 }
+
+enum Priority {
+  LOW
+  NORMAL
+  CRITICAL
+}
+

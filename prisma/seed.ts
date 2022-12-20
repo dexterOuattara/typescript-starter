@@ -360,6 +360,7 @@ async function main() {
       id: 1,
       userId: 1,
       serviceId: 1,
+      priority: "LOW"
     },
   });
 
@@ -370,6 +371,7 @@ async function main() {
       id: 2,
       userId: 2,
       serviceId: 1,
+      priority: "NORMAL",
     },
   });
 
@@ -380,6 +382,7 @@ async function main() {
       id: 3,
       userId: 3,
       serviceId: 2,
+      priority: "CRITICAL"
     },
   });
 

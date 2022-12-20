@@ -36,7 +36,7 @@ $ npm install
 
 ```bash
 
- you can use postgres by defauft
+ you can use postgres by defauft and also you can use .env.test to edit .env file
 
 ```
 

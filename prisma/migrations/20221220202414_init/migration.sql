@@ -4,6 +4,9 @@ CREATE TYPE "UserRole" AS ENUM ('PATIENT', 'STANDARDIST', 'ADMIN', 'STAFF');
 -- CreateEnum
 CREATE TYPE "Gender" AS ENUM ('MALE', 'FEMALE');
 
+-- CreateEnum
+CREATE TYPE "Priority" AS ENUM ('LOW', 'NORMAL', 'CRITICAL');
+
 -- CreateTable
 CREATE TABLE "users" (
     "id" SERIAL NOT NULL,
@@ -73,6 +76,7 @@ CREATE TABLE "Ticket" (
     "id" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL,
     "serviceId" INTEGER NOT NULL,
+    "priority" "Priority" NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 

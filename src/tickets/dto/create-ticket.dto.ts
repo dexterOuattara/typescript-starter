@@ -1,7 +1,9 @@
 // src/articles/dto/create-ticket.dto.ts
+import { UserRole } from '../enum/priority-type.enum';
 
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber } from 'class-validator';
+import { Priority } from '@prisma/client';
+import { IsEnum, IsNumber } from 'class-validator';
 
 export class CreateTicketDto {
     @ApiProperty()
@@ -11,4 +13,8 @@ export class CreateTicketDto {
     @ApiProperty()
     @IsNumber()
     serviceId: number;      
+
+    @ApiProperty()
+    @IsEnum(Priority)
+    readonly role: Priority; 
 }
