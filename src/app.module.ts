@@ -14,6 +14,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { ArticlesModule } from './articles/articles.module';
 import { ServicesModule } from './services/services.module';
 import { ReferentsModule } from './referents/referents.module';
+import { QrcodesModule } from './qrcodes/qrcodes.module';
 
 
 
@@ -53,6 +54,7 @@ import { ReferentsModule } from './referents/referents.module';
     ArticlesModule,
     ServicesModule,
     ReferentsModule,
+    QrcodesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
