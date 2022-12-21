@@ -1,29 +1,30 @@
 // src/referents/entities/referent.entity.ts
 
-import { Referent, UserRole } from '@prisma/client';
+import {
+  Referent,
+  // UserRole,
+} from '@prisma/client';
 import { ApiProperty } from '@nestjs/swagger';
 
-
 export class ReferentEntity implements Referent {
-    @ApiProperty()
-    id: number;
+  @ApiProperty()
+  id: number;
 
-    @ApiProperty()
-    firstName: string;
-  
-    @ApiProperty()
-    lastName: string;
+  @ApiProperty()
+  firstName: string;
 
-    @ApiProperty()
-    email: string;
+  @ApiProperty()
+  lastName: string;
 
-    @ApiProperty()
-    telephone: string;
+  @ApiProperty()
+  email: string;
 
-    @ApiProperty()
-    role: UserRole;
+  @ApiProperty()
+  telephone: string;
 
-    @ApiProperty()
-    userId: number;
-    
-  }
+  // @ApiProperty()
+  // role: UserRole;
+
+  @ApiProperty()
+  userId: number;
+}

@@ -8,7 +8,8 @@ import {
   ParseIntPipe,
   Put,
   Query,
-  // UseInterceptors
+  UseInterceptors,
+  ClassSerializerInterceptor
 } from '@nestjs/common';
 import { User } from '@prisma/client';
 import { Request } from 'express';
@@ -20,15 +21,15 @@ import { UserDto } from 'src/auth/dto';
 import { AuthGuard} from "@nestjs/passport";
 
 
-// @UseGuards(JwtGuard)
-// @UseInterceptors(ClassSerializerInterceptor)
+@UseGuards(JwtGuard)
+@UseInterceptors(ClassSerializerInterceptor)
 @Controller('users')
 export class UserController {
   
   @Get('me')
   getMe(
     @GetUser() user: User){
-    return user;
+    return 'user';
   }
 
   @Get('you')

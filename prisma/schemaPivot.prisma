@@ -11,19 +11,21 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   firstName String?
   lastName  String?
-  email String @unique
-  hash  String
+  email     String   @unique
+  hash      String
   telephone String
   role      UserRole
-  photo String? @default("default.png")
-  birthday DateTime
+  photo     String?  @default("default.png")
+  birthday  DateTime
 
-  badgeGenerator BadgeGenerator[]
-  articles Article[]
-
+  referents Referent[]
+  qrcodes   Qrcode[]
+  articles  Article[]
+  tickets   Ticket[]
+  members   UserConstant[]
 
   createdAt DateTime @default(now())
   updateAt  DateTime @updatedAt
@@ -31,56 +33,38 @@ model User {
   @@map("users")
 }
 
-
 model Referent {
-  id        Int      @id @default(autoincrement())
-  firstName String? 
+  id        Int     @id @unique @default(autoincrement())
+  firstName String?
   lastName  String?
-  email String  @unique
+  email     String
   telephone String
-  // role      UserRole
 
-  badgeGenerator BadgeGenerator[]
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
 
   @@map("referents")
 }
 
+model Qrcode {
+  id   Int     @id @default(autoincrement())
+  code String? @unique
 
-
-model BadgeGenerator {
-  qrcodeId String? @unique
   userId Int
-  referentId Int
-
   user   User @relation(fields: [userId], references: [id])
-  referent   Referent @relation(fields: [referentId], references: [id])
 
-  @@id([userId, referentId])
+  @@map("qrcodes")
 }
-
-
-model Service {
-  id          Int      @id @default(autoincrement())
-  title       String   @unique
-  description String?
-  photo String? @default("default.png")
-
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  @@map("services")
-}
-
 
 model Article {
-  id          Int      @id @default(autoincrement())
-  title       String   @unique
+  id          Int     @id @default(autoincrement())
+  title       String  @unique
   description String?
   body        String
-  
-  published   Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+
+  published Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   userId Int
   user   User @relation(fields: [userId], references: [id])
@@ -88,16 +72,73 @@ model Article {
   @@map("articles")
 }
 
+model Service {
+  id          Int      @id @default(autoincrement())
+  title       String   @unique
+  description String?
+  photo       String?  @default("default.png")
+  tickets     Ticket[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("services")
+}
+
+model Ticket {
+  id        Int      @unique
+  userId    Int
+  serviceId Int
+  priority  Priority
+
+  user    User    @relation(fields: [userId], references: [id])
+  service Service @relation(fields: [serviceId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([userId, serviceId])
+}
+
+model Constant {
+  id              Int    @id @default(autoincrement())
+  temp            Int
+  weight          Int
+  tensionArterial Int
+  observation     String
+
+  // Relation fields
+  members UserConstant[]
+
+  @@map("constants")
+}
+
+model UserConstant {
+  id Int
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+
+  constantId Int
+  Constant   Constant @relation(fields: [constantId], references: [id])
+
+  @@id([userId, constantId])
+}
 
 enum UserRole {
   PATIENT
   STANDARDIST
   ADMIN
   STAFF
-
 }
 
 enum Gender {
   MALE
   FEMALE
+}
+
+enum Priority {
+  LOW
+  NORMAL
+  CRITICAL
 }

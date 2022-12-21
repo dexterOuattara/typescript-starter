@@ -17,7 +17,7 @@ model User {
   email     String   @unique
   hash      String
   telephone String
-  role      UserRole
+  // role      UserRole
   photo     String?  @default("default.png")
   birthday  DateTime
 
@@ -25,6 +25,7 @@ model User {
   qrcodes   Qrcode[]
   articles  Article[]
   tickets   Ticket[]
+  members   UserConstant[]
 
   createdAt DateTime @default(now())
   updateAt  DateTime @updatedAt
@@ -85,10 +86,10 @@ model Service {
 }
 
 model Ticket {
-  id        Int @unique
+  id        Int      @unique
   userId    Int
   serviceId Int
-  priority      Priority
+  priority  Priority
 
   user    User    @relation(fields: [userId], references: [id])
   service Service @relation(fields: [serviceId], references: [id])
@@ -97,6 +98,31 @@ model Ticket {
   updatedAt DateTime @updatedAt
 
   @@id([userId, serviceId])
+}
+
+model Constant {
+  id              Int    @id @default(autoincrement())
+  temp            Int
+  weight          Int
+  tensionArterial Int
+  observation     String
+
+  // Relation fields
+  members UserConstant[]
+
+  @@map("constants")
+}
+
+model UserConstant {
+  id Int
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+
+  constantId Int
+  Constant   Constant @relation(fields: [constantId], references: [id])
+
+  @@id([userId, constantId])
 }
 
 enum UserRole {
@@ -116,4 +142,3 @@ enum Priority {
   NORMAL
   CRITICAL
 }
-

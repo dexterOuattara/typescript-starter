@@ -15,7 +15,6 @@ CREATE TABLE "users" (
     "email" TEXT NOT NULL,
     "hash" TEXT NOT NULL,
     "telephone" TEXT NOT NULL,
-    "role" "UserRole" NOT NULL,
     "photo" TEXT DEFAULT 'default.png',
     "birthday" TIMESTAMP(3) NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -83,6 +82,26 @@ CREATE TABLE "Ticket" (
     CONSTRAINT "Ticket_pkey" PRIMARY KEY ("userId","serviceId")
 );
 
+-- CreateTable
+CREATE TABLE "constants" (
+    "id" SERIAL NOT NULL,
+    "temp" INTEGER NOT NULL,
+    "weight" INTEGER NOT NULL,
+    "tensionArterial" INTEGER NOT NULL,
+    "observation" TEXT NOT NULL,
+
+    CONSTRAINT "constants_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "UserConstant" (
+    "id" INTEGER NOT NULL,
+    "userId" INTEGER NOT NULL,
+    "constantId" INTEGER NOT NULL,
+
+    CONSTRAINT "UserConstant_pkey" PRIMARY KEY ("userId","constantId")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
@@ -115,3 +134,9 @@ ALTER TABLE "Ticket" ADD CONSTRAINT "Ticket_userId_fkey" FOREIGN KEY ("userId") 
 
 -- AddForeignKey
 ALTER TABLE "Ticket" ADD CONSTRAINT "Ticket_serviceId_fkey" FOREIGN KEY ("serviceId") REFERENCES "services"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserConstant" ADD CONSTRAINT "UserConstant_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserConstant" ADD CONSTRAINT "UserConstant_constantId_fkey" FOREIGN KEY ("constantId") REFERENCES "constants"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

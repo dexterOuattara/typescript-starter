@@ -48,10 +48,10 @@ export class AuthDto {
   @IsNotEmpty()
   telephone: string;
 
-  @ApiProperty()
-  @IsEnum(UserRole)
-  @IsNotEmpty()
-  readonly role: UserRole;
+  // @ApiProperty()
+  // @IsEnum(UserRole)
+  // @IsNotEmpty()
+  // readonly role: UserRole;
 
   @ApiProperty()
   @IsString()
@@ -102,10 +102,10 @@ export class UserDto {
   @IsNotEmpty()
   telephone: string;
 
-  @ApiProperty()
-  @IsEnum(UserRole)
-  @IsNotEmpty()
-  readonly role: UserRole;
+  // @ApiProperty()
+  // @IsEnum(UserRole)
+  // @IsNotEmpty()
+  // readonly role: UserRole;
 
   @ApiProperty()
   @IsString()
