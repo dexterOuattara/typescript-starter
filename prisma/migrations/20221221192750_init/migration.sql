@@ -1,10 +1,4 @@
 -- CreateEnum
-CREATE TYPE "UserRole" AS ENUM ('PATIENT', 'STANDARDIST', 'ADMIN', 'STAFF');
-
--- CreateEnum
-CREATE TYPE "Gender" AS ENUM ('MALE', 'FEMALE');
-
--- CreateEnum
 CREATE TYPE "Priority" AS ENUM ('LOW', 'NORMAL', 'CRITICAL');
 
 -- CreateTable
@@ -15,6 +9,8 @@ CREATE TABLE "users" (
     "email" TEXT NOT NULL,
     "hash" TEXT NOT NULL,
     "telephone" TEXT NOT NULL,
+    "gender" TEXT NOT NULL,
+    "role" TEXT NOT NULL,
     "photo" TEXT DEFAULT 'default.png',
     "birthday" TIMESTAMP(3) NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,

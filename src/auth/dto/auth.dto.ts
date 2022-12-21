@@ -7,7 +7,7 @@ import {
 } from 'class-validator';
 
 import { ApiProperty } from '@nestjs/swagger';
-import { UserRole } from '../enum/role-type.enum';
+import { Gender, UserRole } from '../enum/role-type.enum';
 export class AuthsignDto {
   [x: string]: string;
   @ApiProperty()
@@ -47,6 +47,16 @@ export class AuthDto {
   @IsString()
   @IsNotEmpty()
   telephone: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  gender: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  role: string;
 
   // @ApiProperty()
   // @IsEnum(UserRole)
@@ -101,6 +111,16 @@ export class UserDto {
   @IsString()
   @IsNotEmpty()
   telephone: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  gender: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  role: string;
 
   // @ApiProperty()
   // @IsEnum(UserRole)

@@ -17,7 +17,8 @@ model User {
   email     String   @unique
   hash      String
   telephone String
-  // role      UserRole
+  gender    String // PATIENT STANDARDIST ADMIN STAFF
+  role      String // MALE FEMALE
   photo     String?  @default("default.png")
   birthday  DateTime
 
@@ -125,17 +126,17 @@ model UserConstant {
   @@id([userId, constantId])
 }
 
-enum UserRole {
-  PATIENT
-  STANDARDIST
-  ADMIN
-  STAFF
-}
+// enum UserRole {
+//   PATIENT
+//   STANDARDIST
+//   ADMIN
+//   STAFF
+// }
 
-enum Gender {
-  MALE
-  FEMALE
-}
+// enum Gender {
+//   MALE
+//   FEMALE
+// }
 
 enum Priority {
   LOW
