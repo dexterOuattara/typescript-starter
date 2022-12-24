@@ -26,19 +26,21 @@ import { UserDto } from 'src/auth/dto';
 import { AuthGuard} from "@nestjs/passport";
 import { AuthService } from 'src/auth/auth.service';
 import { AuthDto, AuthsignDto, UpdatePasswordDto, UserList } from '../auth/dto';
-import { ApiOkResponse } from '@nestjs/swagger';
+import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 
 
 // @UseGuards(JwtGuard)
 // @UseInterceptors(ClassSerializerInterceptor)
 @Controller('users')
+@ApiTags('users')
+
 export class UserController {
   constructor(private authService: AuthService) {}
   
 
   @Get('allusers')
   @ApiOkResponse({
-    type: AuthDto,
+    type: UserList,
     isArray: true,
   })  findAll() {
     return this.authService.findAll();
@@ -46,7 +48,7 @@ export class UserController {
 
   @Get('allpatients')
   @ApiOkResponse({
-    type: AuthDto,
+    type: UserList,
     isArray: true,
   })  allpatients() {
     return this.authService.allpatients();
@@ -54,7 +56,7 @@ export class UserController {
 
   @Get('allstandardists')
   @ApiOkResponse({
-    type: AuthDto,
+    type: UserList,
     isArray: true,
   })  allstandardists() {
     return this.authService.allstandardists();
@@ -62,14 +64,14 @@ export class UserController {
 
   @Get('alladmins')
   @ApiOkResponse({
-    type: AuthDto,
+    type: UserList,
     isArray: true,
   })  alladmins() {
     return this.authService.alladmins();
   }
 
   @Get(':id')
-  @ApiOkResponse({ type: AuthDto })
+  @ApiOkResponse({ type: UserList })
   async findOne(
     @Param('id', ParseIntPipe) id: number,
   ) {

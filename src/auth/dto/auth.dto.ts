@@ -82,11 +82,6 @@ export class UserList {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
-  password: string;
-
-  @ApiProperty()
-  @IsString()
-  @IsNotEmpty()
   firstName: string;
 
   @ApiProperty()
