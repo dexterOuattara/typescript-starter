@@ -109,6 +109,34 @@ export class AuthService {
     };
   }
 
+  findAll() {
+    return this.prisma.user.findMany();
+  }
+
+  allpatients() {
+    return this.prisma.user.findMany({
+      where: { role: "PATIENT" },
+    });
+  }
+
+  allstandardists() {
+    return this.prisma.user.findMany({
+      where: { role: "STANDARDIST" },
+    });
+  }
+
+  alladmins() {
+    return this.prisma.user.findMany({
+      where: { role: "ADMIN" },
+    });
+  }
+
+  async findOne(id: number) {
+    return this.prisma.user.findUnique({
+      where: { id },
+    });
+  }
+
   //use by user module to change user password
   async updatePassword(
     dto: UpdatePasswordDto,

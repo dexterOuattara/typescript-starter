@@ -49,6 +49,14 @@ export class QrcodesController {
     return this.qrcodesService.findAll();
   }
 
+  @Get('queue')
+  @ApiOkResponse({
+    type: QrcodeEntity,
+    isArray: true,
+  })  findAllQueue() {
+    return this.qrcodesService.findAllQueue();
+  }
+
   @Get(':id')
   @ApiOkResponse({ type: QrcodeEntity })
   async findOne(

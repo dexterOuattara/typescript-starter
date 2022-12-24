@@ -19,6 +19,13 @@ export class QrcodesService {
     return this.prisma.qrcode.findMany();
   }
 
+  findAllQueue() {
+    return this.prisma.qrcode.findMany({
+      where: { queue: true },
+    });
+  }
+  
+
   async findOne(id: number) {
     return this.prisma.qrcode.findUnique({
       where: { id },
@@ -40,4 +47,7 @@ export class QrcodesService {
       where: { id },
     });  
   }
+
+
+  
 }

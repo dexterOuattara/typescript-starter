@@ -86,7 +86,7 @@ model Service {
 }
 
 model Ticket {
-  id        Int      @unique
+  id        Int      @unique @default(autoincrement())
   userId    Int
   serviceId Int
   priority  Priority

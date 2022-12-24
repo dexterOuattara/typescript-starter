@@ -308,6 +308,8 @@ async function main() {
     update: {},
     create: {
       code: 'name+Referent+111',
+      status: true,
+      queue: true,
       userId: 1,
     },
   });
@@ -317,6 +319,8 @@ async function main() {
     update: {},
     create: {
       code: 'name+Referent+222',
+      status: true,
+      queue: true,
       userId: 2,
     },
   });
@@ -326,6 +330,8 @@ async function main() {
     update: {},
     create: {
       code: 'name+Referent+333',
+      status: true,
+      queue: true,
       userId: 3,
     },
   });
@@ -335,6 +341,8 @@ async function main() {
     update: {},
     create: {
       code: 'name+Referent+444',
+      status: true,
+      queue: false,
       userId: 4,
     },
   });
@@ -344,6 +352,8 @@ async function main() {
     update: {},
     create: {
       code: 'name+Referent+555',
+      status: true,
+      queue: false,
       userId: 5,
     },
   });
@@ -353,44 +363,46 @@ async function main() {
     update: {},
     create: {
       code: 'name+Referent+665',
+      status: true,
+      queue: false,
       userId: 6,
     },
   });
 
   // Ticket SEED
 
-  const ticket1 = await prisma.ticket.upsert({
-    where: { id: 1 },
-    update: {},
-    create: {
-      id: 1,
-      userId: 1,
-      serviceId: 1,
-      priority: "LOW"
-    },
-  });
+  // const ticket1 = await prisma.ticket.upsert({
+  //   where: { id: 1 },
+  //   update: {},
+  //   create: {
+  //     id: 1,
+  //     userId: 1,
+  //     serviceId: 1,
+  //     priority: "LOW"
+  //   },
+  // });
 
-  const ticket2 = await prisma.ticket.upsert({
-    where: { id: 2 },
-    update: {},
-    create: {
-      id: 2,
-      userId: 2,
-      serviceId: 1,
-      priority: "NORMAL",
-    },
-  });
+  // const ticket2 = await prisma.ticket.upsert({
+  //   where: { id: 2 },
+  //   update: {},
+  //   create: {
+  //     id: 2,
+  //     userId: 2,
+  //     serviceId: 1,
+  //     priority: "NORMAL",
+  //   },
+  // });
 
-  const ticket3 = await prisma.ticket.upsert({
-    where: { id: 3 },
-    update: {},
-    create: {
-      id: 3,
-      userId: 3,
-      serviceId: 2,
-      priority: "CRITICAL"
-    },
-  });
+  // const ticket3 = await prisma.ticket.upsert({
+  //   where: { id: 3 },
+  //   update: {},
+  //   create: {
+  //     id: 3,
+  //     userId: 3,
+  //     serviceId: 2,
+  //     priority: "CRITICAL"
+  //   },
+  // });
 
   console.log({
     // user seed
@@ -426,9 +438,9 @@ async function main() {
     qrcode5,
     qrcode6,
     // ticket seed
-    ticket1,
-    ticket2,
-    ticket3,
+    // ticket1,
+    // ticket2,
+    // ticket3,
   });
 }
 

@@ -1,4 +1,4 @@
-import { Priority, Ticket } from '@prisma/client';
+import { Ticket } from '@prisma/client';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class TicketEntity implements Ticket {
@@ -13,7 +13,7 @@ export class TicketEntity implements Ticket {
     serviceId: number;
     
     @ApiProperty()
-    readonly priority: Priority;  
+    priority: string;  
 
     @ApiProperty()
     createdAt: Date;

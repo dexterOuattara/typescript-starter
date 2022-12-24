@@ -75,6 +75,54 @@ export class AuthDto {
   UserRole: any;
 }
 
+export class UserList {
+  @ApiProperty()
+  @IsEmail()
+  @IsNotEmpty()
+  email: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  password: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  firstName: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  lastName: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  telephone: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  gender: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  role: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  photo: string;
+
+  @ApiProperty()
+  @IsDateString()
+  @IsNotEmpty()
+  birthday: Date;
+  UserRole: any;
+}
+
 
 export class UpdatePasswordDto {
 

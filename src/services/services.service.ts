@@ -7,7 +7,6 @@ import { ApiTags } from '@nestjs/swagger';
 @Injectable()
 @ApiTags('services')
 export class ServicesService {
-
   constructor(private prisma: PrismaService) {}
 
 

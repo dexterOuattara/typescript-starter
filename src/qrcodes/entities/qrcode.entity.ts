@@ -10,4 +10,16 @@ export class QrcodeEntity implements Qrcode {
   
     @ApiProperty()
     userId: number;
+
+    @ApiProperty()
+    status: boolean;
+
+    @ApiProperty()
+    queue: boolean;
+
+    @ApiProperty()
+    createdAt: Date;
+  
+    @ApiProperty()
+    updatedAt: Date;    
   }

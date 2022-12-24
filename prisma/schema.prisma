@@ -54,6 +54,11 @@ model Qrcode {
   userId Int
   user   User @relation(fields: [userId], references: [id])
 
+  status Boolean  @default(false)
+  queue Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   @@map("qrcodes")
 }
 
@@ -87,10 +92,10 @@ model Service {
 }
 
 model Ticket {
-  id        Int      @unique
+  id        Int
   userId    Int
   serviceId Int
-  priority  Priority
+  priority  String // LOW NORMAL CRITICAL
 
   user    User    @relation(fields: [userId], references: [id])
   service Service @relation(fields: [serviceId], references: [id])
@@ -138,8 +143,8 @@ model UserConstant {
 //   FEMALE
 // }
 
-enum Priority {
-  LOW
-  NORMAL
-  CRITICAL
-}
+// enum Priority {
+//   LOW
+//   NORMAL
+//   CRITICAL
+// }

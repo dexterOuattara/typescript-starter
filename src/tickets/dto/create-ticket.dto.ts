@@ -2,8 +2,7 @@
 import { UserRole } from '../enum/priority-type.enum';
 
 import { ApiProperty } from '@nestjs/swagger';
-import { Priority } from '@prisma/client';
-import { IsEnum, IsNumber } from 'class-validator';
+import { IsNumber, IsString } from 'class-validator';
 
 export class CreateTicketDto {
     @ApiProperty()
@@ -15,6 +14,6 @@ export class CreateTicketDto {
     serviceId: number;      
 
     @ApiProperty()
-    @IsEnum(Priority)
-    readonly role: Priority; 
+    @IsString()
+    priority: string;   
 }

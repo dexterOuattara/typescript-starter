@@ -1,6 +1,3 @@
--- CreateEnum
-CREATE TYPE "Priority" AS ENUM ('LOW', 'NORMAL', 'CRITICAL');
-
 -- CreateTable
 CREATE TABLE "users" (
     "id" SERIAL NOT NULL,
@@ -36,6 +33,10 @@ CREATE TABLE "qrcodes" (
     "id" SERIAL NOT NULL,
     "code" TEXT,
     "userId" INTEGER NOT NULL,
+    "status" BOOLEAN NOT NULL DEFAULT false,
+    "queue" BOOLEAN NOT NULL DEFAULT false,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "qrcodes_pkey" PRIMARY KEY ("id")
 );
@@ -71,7 +72,7 @@ CREATE TABLE "Ticket" (
     "id" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL,
     "serviceId" INTEGER NOT NULL,
-    "priority" "Priority" NOT NULL,
+    "priority" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -112,9 +113,6 @@ CREATE UNIQUE INDEX "articles_title_key" ON "articles"("title");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "services_title_key" ON "services"("title");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Ticket_id_key" ON "Ticket"("id");
 
 -- AddForeignKey
 ALTER TABLE "referents" ADD CONSTRAINT "referents_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

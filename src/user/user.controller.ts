@@ -19,17 +19,23 @@ import { JwtGuard } from 'src/auth/guard';
 
 import { UserDto } from 'src/auth/dto';
 import { AuthGuard} from "@nestjs/passport";
+import { ApiOkResponse } from '@nestjs/swagger';
+import { AuthService } from 'src/auth/auth.service';
 
 
-@UseGuards(JwtGuard)
-@UseInterceptors(ClassSerializerInterceptor)
+// @UseGuards(JwtGuard)
+// @UseInterceptors(ClassSerializerInterceptor)
 @Controller('users')
 export class UserController {
+  authService: any;
   
-  @Get('me')
-  getMe(
-    @GetUser() user: User){
-    return 'user';
+
+  @Get('users')
+  @ApiOkResponse({
+    type: AuthService,
+    isArray: true,
+  })  findAll() {
+    return this.authService.findAll();
   }
 
   @Get('you')
