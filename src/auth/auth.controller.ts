@@ -9,60 +9,17 @@ import {
   ParseIntPipe,
   Post,
 } from '@nestjs/common';
+import { User } from '@prisma/client';
+
 import { AuthService } from './auth.service';
 import { AuthDto, AuthsignDto, UpdatePasswordDto, UserList } from './dto';
 import { ApiOkResponse } from '@nestjs/swagger';
 
+
+
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
-
-  @Get('allusers')
-  @ApiOkResponse({
-    type: UserList,
-    isArray: true,
-  })  findAll() {
-    return this.authService.findAll();
-  }
-
-  @Get('allpatients')
-  @ApiOkResponse({
-    type: UserList,
-    isArray: true,
-  })  allpatients() {
-    return this.authService.allpatients();
-  }
-
-  @Get('allstandardists')
-  @ApiOkResponse({
-    type: UserList,
-    isArray: true,
-  })  allstandardists() {
-    return this.authService.allstandardists();
-  }
-
-  @Get('alladmins')
-  @ApiOkResponse({
-    type: UserList,
-    isArray: true,
-  })  alladmins() {
-    return this.authService.alladmins();
-  }
-
-  @Get(':id')
-  @ApiOkResponse({ type: UserList })
-  async findOne(
-    @Param('id', ParseIntPipe) id: number,
-  ) {
-    const qrcode =
-    await this.authService.findOne(+id);
-    if (!qrcode) {
-      throw new NotFoundException(
-        `Could not find user with ${id}.`,
-      );
-    }
-    return qrcode;
-  }
 
   @Post('signup')
   signup(@Body() dto: AuthDto) {

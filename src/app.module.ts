@@ -51,7 +51,7 @@ import { QrcodesModule } from './qrcodes/qrcodes.module';
     ArticlesModule,
     ServicesModule,
     ReferentsModule,
-    QrcodesModule,
+    QrcodesModule, 
   ],
   controllers: [AppController],
   providers: [AppService],

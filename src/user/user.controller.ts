@@ -1,11 +1,16 @@
 import {
+  Body,
   Controller,
   Get,
+  HttpCode,
+  HttpStatus,
+  NotFoundException,
+
   UseGuards,
-  Body,
   // ClassSerializerInterceptor,
   Param,
   ParseIntPipe,
+  Post,
   Put,
   Query,
   UseInterceptors,
@@ -19,23 +24,63 @@ import { JwtGuard } from 'src/auth/guard';
 
 import { UserDto } from 'src/auth/dto';
 import { AuthGuard} from "@nestjs/passport";
-import { ApiOkResponse } from '@nestjs/swagger';
 import { AuthService } from 'src/auth/auth.service';
+import { AuthDto, AuthsignDto, UpdatePasswordDto, UserList } from '../auth/dto';
+import { ApiOkResponse } from '@nestjs/swagger';
 
 
 // @UseGuards(JwtGuard)
 // @UseInterceptors(ClassSerializerInterceptor)
 @Controller('users')
 export class UserController {
-  authService: any;
+  constructor(private authService: AuthService) {}
   
 
-  @Get('users')
+  @Get('allusers')
   @ApiOkResponse({
-    type: AuthService,
+    type: AuthDto,
     isArray: true,
   })  findAll() {
     return this.authService.findAll();
+  }
+
+  @Get('allpatients')
+  @ApiOkResponse({
+    type: AuthDto,
+    isArray: true,
+  })  allpatients() {
+    return this.authService.allpatients();
+  }
+
+  @Get('allstandardists')
+  @ApiOkResponse({
+    type: AuthDto,
+    isArray: true,
+  })  allstandardists() {
+    return this.authService.allstandardists();
+  }
+
+  @Get('alladmins')
+  @ApiOkResponse({
+    type: AuthDto,
+    isArray: true,
+  })  alladmins() {
+    return this.authService.alladmins();
+  }
+
+  @Get(':id')
+  @ApiOkResponse({ type: AuthDto })
+  async findOne(
+    @Param('id', ParseIntPipe) id: number,
+  ) {
+    const qrcode =
+    await this.authService.findOne(+id);
+    if (!qrcode) {
+      throw new NotFoundException(
+        `Could not find user with ${id}.`,
+      );
+    }
+    return qrcode;
   }
 
   @Get('you')
@@ -43,4 +88,6 @@ export class UserController {
     @GetUser() user: User){
     return 'fdshjdfvhj fdsuhy';
   }
+
+  
 }
