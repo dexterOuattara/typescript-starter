@@ -109,27 +109,7 @@ export class AuthService {
     };
   }
 
-  findAll() {
-    return this.prisma.user.findMany();
-  }
 
-  allpatients() {
-    return this.prisma.user.findMany({
-      where: { role: "PATIENT" },
-    });
-  }
-
-  allstandardists() {
-    return this.prisma.user.findMany({
-      where: { role: "STANDARDIST" },
-    });
-  }
-
-  alladmins() {
-    return this.prisma.user.findMany({
-      where: { role: "ADMIN" },
-    });
-  }
 
   async findOne(id: number) {
     return this.prisma.user.findUnique({
@@ -167,6 +147,46 @@ export class AuthService {
       data: {
         hash: await argon.hash(dto.new_password),
       },
+    });
+  }
+
+  findAll() {
+    return this.prisma.user.findMany();
+  }
+
+  findAllUserPerAricle() {
+    return this.prisma.user.findMany({
+      include: {
+        articles: true,
+
+      },
+    });
+  }
+
+  findAllUserPerReferent() {
+    return this.prisma.user.findMany({
+      include: {
+        referents: true,
+
+      },
+    });
+  }
+
+  allpatients() {
+    return this.prisma.user.findMany({
+      where: { role: "PATIENT" },
+    });
+  }
+
+  allstandardists() {
+    return this.prisma.user.findMany({
+      where: { role: "STANDARDIST" },
+    });
+  }
+
+  alladmins() {
+    return this.prisma.user.findMany({
+      where: { role: "ADMIN" },
     });
   }
 }

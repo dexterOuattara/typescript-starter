@@ -16,7 +16,7 @@ import {
   UseInterceptors,
   ClassSerializerInterceptor
 } from '@nestjs/common';
-import { User } from '@prisma/client';
+import { User, Article } from '@prisma/client';
 import { Request } from 'express';
 import { request } from 'http';
 import { GetUser } from 'src/auth/decorator/';
@@ -37,6 +37,22 @@ import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 export class UserController {
   constructor(private authService: AuthService) {}
   
+
+  @Get('articles')
+  @ApiOkResponse({
+    type: UserList,
+    isArray: true,
+  })  findAllUserPerAricle() {
+    return this.authService.findAllUserPerAricle();
+  }
+
+  @Get('referents')
+  @ApiOkResponse({
+    type: UserList,
+    isArray: true,
+  })  findAllUserPerReferent() {
+    return this.authService.findAllUserPerReferent();
+  }
 
   @Get('allusers')
   @ApiOkResponse({
