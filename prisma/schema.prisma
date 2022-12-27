@@ -51,11 +51,13 @@ model Qrcode {
   id   Int     @id @default(autoincrement())
   code String? @unique
 
+  status Boolean  @default(false)
+  queue Boolean  @default(false)
+
   userId Int
   user   User @relation(fields: [userId], references: [id])
 
-  status Boolean  @default(false)
-  queue Boolean  @default(false)
+ 
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -110,7 +110,6 @@ export class AuthService {
   }
 
 
-
   async findOne(id: number) {
     return this.prisma.user.findUnique({
       where: { id },
@@ -154,23 +153,33 @@ export class AuthService {
     return this.prisma.user.findMany();
   }
 
+
+  findAllUserProfile() {
+    return this.prisma.user.findMany({
+      include: {
+        referents: true,
+        qrcodes: true
+      },
+    });
+  }
+
   findAllUserPerAricle() {
     return this.prisma.user.findMany({
       include: {
         articles: true,
-
       },
     });
   }
 
-  findAllUserPerReferent() {
+
+  findAllUserPerQrcode() {
     return this.prisma.user.findMany({
       include: {
-        referents: true,
-
+        qrcodes: true,
       },
     });
   }
+
 
   allpatients() {
     return this.prisma.user.findMany({
@@ -178,11 +187,13 @@ export class AuthService {
     });
   }
 
+
   allstandardists() {
     return this.prisma.user.findMany({
       where: { role: "STANDARDIST" },
     });
   }
+  
 
   alladmins() {
     return this.prisma.user.findMany({

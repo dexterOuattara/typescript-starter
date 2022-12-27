@@ -37,6 +37,13 @@ import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 export class UserController {
   constructor(private authService: AuthService) {}
   
+  @Get('profiles')
+  @ApiOkResponse({
+    type: UserList,
+    isArray: true,
+  })  findAllUserProfile() {
+    return this.authService.findAllUserProfile();
+  }
 
   @Get('articles')
   @ApiOkResponse({
@@ -46,12 +53,12 @@ export class UserController {
     return this.authService.findAllUserPerAricle();
   }
 
-  @Get('referents')
+  @Get('qrcodes')
   @ApiOkResponse({
     type: UserList,
     isArray: true,
-  })  findAllUserPerReferent() {
-    return this.authService.findAllUserPerReferent();
+  })  findAllUserPerQrcode() {
+    return this.authService.findAllUserPerQrcode();
   }
 
   @Get('allusers')
