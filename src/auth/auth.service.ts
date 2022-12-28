@@ -160,6 +160,8 @@ export class AuthService {
         referents: true,
         qrcodes: true
       },
+      take: 10,
+      skip: 1,
     });
   }
 
@@ -168,6 +170,8 @@ export class AuthService {
       include: {
         articles: true,
       },
+      take: 10,
+      skip: 1,
     });
   }
 
@@ -177,6 +181,8 @@ export class AuthService {
       include: {
         qrcodes: true,
       },
+      take: 10,
+      skip: 1,
     });
   }
 
@@ -184,6 +190,8 @@ export class AuthService {
   allpatients() {
     return this.prisma.user.findMany({
       where: { role: "PATIENT" },
+      take: 10,
+      skip: 1,
     });
   }
 
@@ -191,6 +199,8 @@ export class AuthService {
   allstandardists() {
     return this.prisma.user.findMany({
       where: { role: "STANDARDIST" },
+      take: 10,
+      skip: 1,
     });
   }
   
@@ -198,6 +208,8 @@ export class AuthService {
   alladmins() {
     return this.prisma.user.findMany({
       where: { role: "ADMIN" },
+      take: 10,
+      skip: 1,
     });
   }
 }

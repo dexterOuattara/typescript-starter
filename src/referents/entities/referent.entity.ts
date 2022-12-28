@@ -22,9 +22,6 @@ export class ReferentEntity implements Referent {
   @ApiProperty()
   telephone: string;
 
-  // @ApiProperty()
-  // role: UserRole;
-
   @ApiProperty()
   userId: number;
 }

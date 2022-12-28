@@ -15,7 +15,7 @@ import { ArticlesModule } from './articles/articles.module';
 import { ServicesModule } from './services/services.module';
 import { ReferentsModule } from './referents/referents.module';
 import { QrcodesModule } from './qrcodes/qrcodes.module';
-
+import { TicketsModule } from './tickets/tickets.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -24,6 +24,7 @@ import { QrcodesModule } from './qrcodes/qrcodes.module';
     AuthModule,
     UserModule,
     BookmarkModule,
+    TicketsModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (
@@ -52,6 +53,7 @@ import { QrcodesModule } from './qrcodes/qrcodes.module';
     ServicesModule,
     ReferentsModule,
     QrcodesModule, 
+    TicketsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

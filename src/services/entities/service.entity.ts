@@ -20,6 +20,9 @@ export class ServiceEntity implements Service {
   published: boolean;
 
   @ApiProperty()
+  userId: number;
+
+  @ApiProperty()
   createdAt: Date;
 
   @ApiProperty()

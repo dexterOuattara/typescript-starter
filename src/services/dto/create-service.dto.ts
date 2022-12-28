@@ -22,6 +22,11 @@ export class CreateServiceDto {
   @IsNotEmpty()
   photo: string;
 
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  userId: number;
+
   @ApiProperty({
     required: false,
     default: false,

@@ -28,11 +28,6 @@ export class CreateReferentDto {
   telephone: string;
 
   @ApiProperty()
-  @IsEnum(UserRole)
-  @IsNotEmpty()
-  readonly role: UserRole;
-
-  @ApiProperty()
   @IsNumber()
   userId: number;
 

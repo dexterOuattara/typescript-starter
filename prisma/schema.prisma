@@ -26,7 +26,7 @@ model User {
   qrcodes   Qrcode[]
   articles  Article[]
   tickets   Ticket[]
-  members   UserConstant[]
+  services  Service[]
 
   createdAt DateTime @default(now())
   updateAt  DateTime @updatedAt
@@ -36,7 +36,7 @@ model User {
 
 model Referent {
   id        Int     @id @unique @default(autoincrement())
-  firstName String?
+  firstName String? @unique
   lastName  String?
   email     String
   telephone String
@@ -51,16 +51,15 @@ model Qrcode {
   id   Int     @id @default(autoincrement())
   code String? @unique
 
-  status Boolean  @default(false)
-  queue Boolean  @default(false)
+  status Boolean @default(false)
+  queue  Boolean @default(false)
 
   userId Int
   user   User @relation(fields: [userId], references: [id])
 
- 
-
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
   @@map("qrcodes")
 }
 
@@ -81,11 +80,13 @@ model Article {
 }
 
 model Service {
-  id          Int      @id @default(autoincrement())
-  title       String   @unique
+  id          Int     @id @default(autoincrement())
+  title       String  @unique
   description String?
-  photo       String?  @default("default.png")
-  tickets     Ticket[]
+  photo       String? @default("default.png")
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -94,44 +95,42 @@ model Service {
 }
 
 model Ticket {
-  id        Int
-  userId    Int
-  serviceId Int
-  priority  String // LOW NORMAL CRITICAL
-
-  user    User    @relation(fields: [userId], references: [id])
-  service Service @relation(fields: [serviceId], references: [id])
+  id         Int    @id @default(autoincrement())
+  codeTicket Int    @unique
+  priority   String // LOW NORMAL CRITICAL
+  userId     Int
+  user       User   @relation(fields: [userId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@id([userId, serviceId])
+  @@map("tickets")
 }
 
-model Constant {
-  id              Int    @id @default(autoincrement())
-  temp            Int
-  weight          Int
-  tensionArterial Int
-  observation     String
+// model Constant {
+//   id              Int    @id @default(autoincrement())
+//   temp            Int
+//   weight          Int
+//   tensionArterial Int
+//   observation     String
 
-  // Relation fields
-  members UserConstant[]
+//   // Relation fields
+//   members UserConstant[]
 
-  @@map("constants")
-}
+//   @@map("constants")
+// }
 
-model UserConstant {
-  id Int
+// model UserConstant {
+//   id Int
 
-  userId Int
-  user   User @relation(fields: [userId], references: [id])
+//   userId Int
+//   user   User @relation(fields: [userId], references: [id])
 
-  constantId Int
-  Constant   Constant @relation(fields: [constantId], references: [id])
+//   constantId Int
+//   Constant   Constant @relation(fields: [constantId], references: [id])
 
-  @@id([userId, constantId])
-}
+//   @@id([userId, constantId])
+// }
 
 // enum UserRole {
 //   PATIENT

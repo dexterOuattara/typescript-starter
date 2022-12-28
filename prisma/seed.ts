@@ -196,6 +196,7 @@ async function main() {
       description:
         'Fièvre, Rhume, Grippe, Maux de tête ou autre maladie qui requiert la médecine générale',
       photo: 'jason.jpg',
+      userId:1
     },
   });
 
@@ -207,6 +208,7 @@ async function main() {
       description:
         'Gynécologie-Obstétrique, Planification familiale, Diagnostic prénatal',
       photo: 'jason.jpg',
+      userId:2
     },
   });
 
@@ -218,6 +220,7 @@ async function main() {
       description:
         'Tout problème lié aux enfants, y compris les problèmes mentaux et physiques',
       photo: 'jason.jpg',
+      userId:1
     },
   });
 
@@ -376,9 +379,8 @@ async function main() {
   //   update: {},
   //   create: {
   //     id: 1,
+  //     priority: "LOW",
   //     userId: 1,
-  //     serviceId: 1,
-  //     priority: "LOW"
   //   },
   // });
 
@@ -387,9 +389,8 @@ async function main() {
   //   update: {},
   //   create: {
   //     id: 2,
+  //     priority: "LOW",
   //     userId: 2,
-  //     serviceId: 1,
-  //     priority: "NORMAL",
   //   },
   // });
 
@@ -398,9 +399,8 @@ async function main() {
   //   update: {},
   //   create: {
   //     id: 3,
+  //     priority: "LOW",
   //     userId: 3,
-  //     serviceId: 2,
-  //     priority: "CRITICAL"
   //   },
   // });
 

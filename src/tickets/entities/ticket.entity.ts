@@ -7,13 +7,13 @@ export class TicketEntity implements Ticket {
     id: number;
 
     @ApiProperty()
-    userId: number;
-  
-    @ApiProperty()
-    serviceId: number;
-    
+    codeTicket: number;  
+
     @ApiProperty()
     priority: string;  
+
+    @ApiProperty()
+    userId: number;
 
     @ApiProperty()
     createdAt: Date;
