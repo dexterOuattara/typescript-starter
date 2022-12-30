@@ -1,8 +1,7 @@
 // src/articles/dto/create-qrcode.dto.ts
-
 import {
+  IsBoolean,
   IsNumber,
-  IsOptional,
   IsString,
 } from 'class-validator';
 
@@ -14,20 +13,14 @@ export class CreateQrcodeDto {
   code: string;
 
   @ApiProperty()
+  @IsBoolean()
+  status: boolean;
+
+  @ApiProperty()
+  @IsBoolean()
+  queue?: boolean;
+
+  @ApiProperty()
   @IsNumber()
   userId: number;
-
-  @ApiProperty({
-    required: false,
-    default: false,
-  })
-  @IsOptional()
-  status?: boolean = false;
-
-  @ApiProperty({
-    required: false,
-    default: false,
-  })
-  @IsOptional()
-  queue?: boolean = false;
 }

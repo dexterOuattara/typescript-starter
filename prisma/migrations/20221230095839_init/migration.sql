@@ -21,9 +21,11 @@ CREATE TABLE "referents" (
     "id" SERIAL NOT NULL,
     "firstName" TEXT,
     "lastName" TEXT,
-    "email" TEXT NOT NULL,
+    "email" TEXT,
     "telephone" TEXT NOT NULL,
     "userId" INTEGER NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "referents_pkey" PRIMARY KEY ("id")
 );
@@ -82,12 +84,6 @@ CREATE TABLE "tickets" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
-
--- CreateIndex
-CREATE UNIQUE INDEX "referents_id_key" ON "referents"("id");
-
--- CreateIndex
-CREATE UNIQUE INDEX "referents_firstName_key" ON "referents"("firstName");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "qrcodes_code_key" ON "qrcodes"("code");

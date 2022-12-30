@@ -8,7 +8,6 @@ import {
 } from 'class-validator';
 
 import { ApiProperty } from '@nestjs/swagger';
-import { UserRole } from 'src/auth/enum/role-type.enum';
 
 export class CreateReferentDto {
   @ApiProperty()
